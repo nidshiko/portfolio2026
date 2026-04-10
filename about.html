@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Luciana Salomón</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#ffffff; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
+    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+
+    #page-transition { position:fixed; inset:0; background:#111; opacity:0; pointer-events:none; z-index:999; transition:opacity 0.35s ease; }
+    #page-transition.fade-in { opacity:1; pointer-events:all; }
+
+    .port { max-width:960px; margin:0 auto; padding:0 2rem 5rem; opacity:0; animation: fadeUp 0.5s ease 0.1s forwards; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+    nav { display:flex; justify-content:space-between; align-items:center; padding:2rem 0 3rem; border-bottom:0.5px solid var(--border); margin-bottom:4rem; }
+    .nav-name { font-family:'DM Serif Display',serif; font-size:18px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
+    .nav-links a:hover { color:var(--text); }
+
+    .about-grid { display:grid; grid-template-columns:1fr 2fr; gap:5rem; margin-bottom:5rem; }
+
+    .photo-col { position:sticky; top:2rem; align-self:start; }
+    .photo { width:100%; aspect-ratio:3/4; border-radius:4px; overflow:hidden; background:var(--hover-bg); margin-bottom:1.5rem; }
+    .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .photo-name { font-family:'DM Serif Display',serif; font-size:16px; letter-spacing:-0.02em; margin-bottom:0.25rem; }
+    .photo-role { font-size:12px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.05em; text-transform:uppercase; }
+
+    .content-col { padding-top:0.5rem; }
+    .section-label { font-size:11px; font-weight:300; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:0.5px solid var(--border); }
+    .bio-title { font-family:'DM Serif Display',serif; font-size:36px; letter-spacing:-0.02em; line-height:1.1; margin-bottom:2rem; }
+    .bio-title em { font-style:italic; color:var(--text-secondary); }
+    .bio-text { font-size:15px; font-weight:300; color:var(--text-secondary); line-height:1.85; margin-bottom:1.5rem; }
+
+    .skills-section { margin-top:3rem; padding-top:3rem; border-top:0.5px solid var(--border); }
+    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:2rem; }
+    .skill-group h3 { font-size:11px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:0.5px solid var(--border); }
+    .skill-group ul { list-style:none; }
+    .skill-group li { font-size:13px; font-weight:300; color:var(--text-secondary); padding:0.35rem 0; border-bottom:0.5px solid var(--border); }
+
+    .contact-section { margin-top:3rem; padding-top:3rem; border-top:0.5px solid var(--border); display:flex; gap:2rem; flex-wrap:wrap; }
+    .contact-link { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
+    .contact-link:hover { color:var(--text); }
+
+    footer { padding-top:2rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+    .footer-name { font-family:'DM Serif Display',serif; font-size:14px; color:var(--text-secondary); }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.05em; text-transform:uppercase; }
+    .footer-links a:hover { color:var(--text); }
+
+    @media (max-width:600px) {
+      .about-grid { grid-template-columns:1fr; gap:2rem; }
+      .photo-col { position:static; }
+      .skills-grid { grid-template-columns:1fr 1fr; }
+      .nav-links { display:none; }
+    }
+
+
+    .fade-observe { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .fade-observe.visible { opacity:1; transform:translateY(0); }
+
+    #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9998; align-items:center; justify-content:center; cursor:none; }
+    #lightbox.open { display:flex; }
+    #lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; border-radius:2px; }
+    #lightbox-close { position:fixed; top:1.5rem; right:2rem; font-family:'Archivo',sans-serif; font-size:12px; font-weight:300; color:#fff; letter-spacing:0.1em; text-transform:uppercase; cursor:none; }
+  </style>
+</head>
+<body>
+  <div id="lightbox">
+    <span id="lightbox-close">Close ×</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <div id="page-transition"></div>
+
+  <div class="port">
+    <nav>
+      <a href="index.html" class="nav-name nav-link">Luciana Salomón</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Work</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="mailto:tu@email.com">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="about-grid">
+      <div class="photo-col">
+        <div class="photo">
+          <img src="img/bio_1.jpg" alt="Luciana Salomón">
+          <!-- Reemplazá con tu foto -->
+        </div>
+        <p class="photo-name">Luciana Salomón</p>
+        <p class="photo-role">Senior Production Designer</p>
+      </div>
+
+      <div class="content-col">
+        <p class="section-label">About</p>
+        <h1 class="bio-title">Design with a <em>dark side</em></h1>
+        <p class="bio-text">I'm a Senior Production Designer and illustrator based in Buenos Aires. I graduated from FADU-UBA and work at the intersection of editorial design, illustration, and production.</p>
+        <p class="bio-text">My personal work lives between the cute and the uncanny — analog materials, mythological sensibility, objects that exist in the physical world. I make books, systems, zines, and worlds.</p>
+        <p class="bio-text">I believe the most interesting design happens at the edges — between kawaii and monstrous, between production and authorship, between the brief and the thing you actually wanted to make.</p>
+
+        <div class="skills-section">
+          <p class="section-label">Skills & tools</p>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h3>Design</h3>
+              <ul>
+                <li>Editorial design</li>
+                <li>Book design</li>
+                <li>Packaging</li>
+                <li>Graphic systems</li>
+                <li>Typography</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Illustration</h3>
+              <ul>
+                <li>Analog illustration</li>
+                <li>Color pencil</li>
+                <li>Character design</li>
+                <li>Self-publishing</li>
+                <li>Zine making</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Tools</h3>
+              <ul>
+                <li>InDesign</li>
+                <li>Illustrator</li>
+                <li>Photoshop</li>
+                <li>HTML / CSS</li>
+                <li>Figma</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-section">
+          <a href="mailto:tu@email.com" class="contact-link">tu@email.com</a>
+          <a href="https://linkedin.com/in/lucianasalomon" target="_blank" class="contact-link">LinkedIn</a>
+          <a href="https://instagram.com/hice_todo_esto" target="_blank" class="contact-link">@hice_todo_esto</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-name">Luciana Salomón</span>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/lucianasalomon" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/hice_todo_esto" target="_blank">Instagram</a>
+        <a href="mailto:tu@email.com">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('a.nav-link, a[href$=".html"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (!href || href.startsWith('mailto') || href.startsWith('http')) return;
+        e.preventDefault();
+        var overlay = document.getElementById('page-transition');
+        overlay.classList.add('fade-in');
+        setTimeout(function() { window.location.href = href; }, 350);
+      });
+    });
+  </script>
+
+    // Fade in on scroll
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.grid img, .grid-gifs img, .hero-img').forEach(function(el) {
+      el.classList.add('fade-observe');
+      obs.observe(el);
+    });
+    // Lightbox
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.grid img, .grid-gifs img').forEach(function(img) {
+      img.style.cursor = 'none';
+      img.addEventListener('click', function() {
+        lbImg.src = this.src;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    document.getElementById('lightbox-close').addEventListener('click', function() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+</body>
+</html>
