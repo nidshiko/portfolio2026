@@ -8,322 +8,175 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --text-secondary: #555555;
-      --text-tertiary: #999999;
-      --border: rgba(0,0,0,0.12);
-      --hover-bg: #f7f7f5;
-    }
-    body { font-family: 'Archivo', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    :root { --bg:#faf9f7; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
+    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 
-    /* INTRO */
-    #intro {
-      position: fixed;
-      inset: 0;
-      background: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
-    #intro.hidden { opacity: 0; visibility: hidden; }
-    .intro-line {
-      font-family: 'DM Serif Display', serif;
-      color: #ffffff;
-      font-size: clamp(28px, 5vw, 52px);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      text-align: center;
-      max-width: 700px;
-      padding: 0 2rem;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .intro-line em { font-style: italic; color: #aaaaaa; }
-    .intro-line.show { opacity: 1; transform: translateY(0); }
-    .intro-sub {
-      font-family: 'Archivo', sans-serif;
-      font-size: 13px;
-      font-weight: 300;
-      color: #666;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-top: 2rem;
-      opacity: 0;
-      transition: opacity 0.6s ease 0.4s;
-    }
-    .intro-sub.show { opacity: 1; }
-    .intro-enter {
-      margin-top: 3rem;
-      font-size: 12px;
-      font-weight: 300;
-      color: #444;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border: 0.5px solid #333;
-      padding: 10px 24px;
-      border-radius: 2px;
-      background: transparent;
-      font-family: 'Archivo', sans-serif;
-      opacity: 0;
-      transition: opacity 0.6s ease 0.8s, color 0.2s, border-color 0.2s;
-    }
-    .intro-enter.show { opacity: 1; }
-    .intro-enter:hover { color: #fff; border-color: #fff; }
+    .port { max-width:1100px; margin:0 auto; padding:0 3rem 6rem; }
 
-    /* MAIN */
-    #main { opacity: 0; transition: opacity 0.6s ease; }
-    #main.show { opacity: 1; }
+    nav { display:flex; justify-content:space-between; align-items:baseline; padding:2rem 0; margin-bottom:6rem; }
+    .nav-name { font-family:'Archivo',sans-serif; font-size:14px; font-weight:500; letter-spacing:-0.01em; text-decoration:none; color:var(--text); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:11px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
 
-    .port { max-width: 960px; margin: 0 auto; padding: 0 2rem 5rem; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0 3rem; border-bottom: 0.5px solid var(--border); margin-bottom: 4rem; }
-    .nav-name { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 12px; font-weight: 300; color: var(--text-tertiary); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
-    .nav-links a:hover { color: var(--text); }
-    .hero { margin-bottom: 5rem; }
-    .hero-label { font-size: 11px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1.5rem; }
-    .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(42px, 8vw, 72px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; max-width: 700px; }
-    .hero-title em { font-style: italic; color: var(--text-secondary); }
-    .hero-desc { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; max-width: 480px; }
-    .section-label { font-size: 11px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
-    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-bottom: 5rem; }
-    .project-card { background: var(--bg); padding: 2rem; cursor: pointer; transition: background 0.2s; position: relative; text-decoration: none; color: inherit; display: block; }
-    .project-card:hover { background: var(--hover-bg); }
-    .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-    .project-num { font-size: 11px; font-weight: 300; color: var(--text-tertiary); letter-spacing: 0.1em; margin-bottom: 1.5rem; }
-    .project-thumb { width: 100%; aspect-ratio: 16/10; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; overflow: hidden; background-size: cover; background-position: center; }
-    .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .thumb-desbloqueados { background-color: #F5C030; }
-    .thumb-pole { background-color: #4B2D7A; }
-    .thumb-centauro { background-color: #1a1a1a; }
-    .thumb-doce { background-color: #3B1F7A; }
-    .thumb-client { background-color: #e8e8e4; }
-    .project-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.2; }
-    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.75rem; }
-    .tag { font-size: 10px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); border: 0.5px solid var(--border); padding: 3px 8px; border-radius: 2px; }
-    .tag-private { background: var(--hover-bg); }
-    .project-desc { font-size: 13px; font-weight: 300; color: var(--text-secondary); line-height: 1.6; }
-    .arrow { position: absolute; top: 2rem; right: 2rem; font-size: 16px; color: var(--text-tertiary); opacity: 0; transition: opacity 0.2s; }
-    .project-card:hover .arrow { opacity: 1; }
-    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; padding-top: 3rem; border-top: 0.5px solid var(--border); }
-    .about-title { font-family: 'DM Serif Display', serif; font-size: 32px; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
-    .about-title em { font-style: italic; color: var(--text-secondary); }
-    .about-text { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; }
-    .skills-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; list-style: none; }
-    .skills-list li { font-size: 12px; font-weight: 300; color: var(--text-tertiary); padding: 0.4rem 0; border-bottom: 0.5px solid var(--border); letter-spacing: 0.03em; }
-    footer { padding-top: 2rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .footer-name { font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--text-secondary); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 12px; font-weight: 300; color: var(--text-tertiary); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
-    .footer-links a:hover { color: var(--text); }
-    @media (max-width: 600px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-      .about { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links { display: none; }
-      .hero-title { font-size: 38px; }
+    .work-header { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:1rem; border-bottom:0.5px solid var(--border); margin-bottom:0; }
+    .work-label { font-size:11px; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-tertiary); }
+    .work-count { font-size:11px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.05em; }
+
+    
+
+    
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    footer { padding-top:2rem; display:flex; justify-content:center; align-items:center; }
+    
+    .footer-copy { font-size:11px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.05em; }
+
+    @media (max-width:600px) {
+      .port { padding:0 1.5rem 4rem; }
+      .nav-links { display:none; }
+      
     }
 
-    .port { opacity:1; }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-    .project-card { overflow:visible; }
+    #curtain { position:fixed; inset:0; background:#111; z-index:999; transform:translateY(-100%); }
+    #curtain.fall { animation: curtainFall 0.4s cubic-bezier(0.86,0,0.07,1) forwards; }
+    #curtain.rise { animation: curtainRise 0.5s cubic-bezier(0.86,0,0.07,1) forwards; }
+    @keyframes curtainFall { from { transform:translateY(100%); } to { transform:translateY(0); } }
+    @keyframes curtainRise { from { transform:translateY(0); } to { transform:translateY(-100%); } }
+
+    
+    
+    .project-list { margin-bottom:4rem; }
+    .project-item { display:block; position:relative; text-decoration:none; color:inherit; overflow:hidden; border-bottom:0.5px solid var(--border); isolation:isolate; }
+    .project-item:first-child { border-top:0.5px solid var(--border); }
+    .project-strip { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; filter:brightness(1); transition:filter 0.5s ease, transform 0.6s ease; }
+    .project-item:hover .project-strip { filter:brightness(0.35); transform:scale(1.03); }
+    .project-overlay { position:absolute; inset:0; display:flex; align-items:center; padding:0 3rem; gap:2.5rem; opacity:0; transition:opacity 0.35s ease; }
+    .project-item:hover .project-overlay { opacity:1; }
+    .project-item:hover .project-name { transform:translateY(0); }
+    .project-num { font-size:11px; font-weight:300; color:rgba(255,255,255,0.5); letter-spacing:0.1em; flex-shrink:0; }
+    .project-name { font-family:'DM Serif Display',serif; font-size:clamp(28px,4vw,56px); letter-spacing:-0.03em; color:#ffffff; line-height:1; transform:translateY(8px); transition:transform 0.4s ease; }
+    .project-tags { display:flex; gap:6px; flex-wrap:wrap; margin-left:auto; }
+    .tag { font-size:10px; font-weight:300; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:0.5px solid rgba(255,255,255,0.3); padding:3px 9px; border-radius:2px; }
+    .tag-private { background:rgba(255,255,255,0.1); border-color:transparent; }
   </style>
 </head>
 <body>
+  <div id="curtain"></div>
+  <div class="port">
+    <nav>
+      <a href="index.html" class="nav-name">Luciana Salomón</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#98ecedd8fdf5f9f1f4b6fbf7f5">Contact</a></li>
+      </ul>
+    </nav>
 
-  <div id="intro">
-    <p class="intro-line" id="l1">Hi! I'm Luciana.</p>
-    <p class="intro-line" id="l2">I make things <em>with intention</em> —</p>
-    <p class="intro-line" id="l3">books, systems, objects, worlds.</p>
-    <p class="intro-sub" id="l4">Design · Illustration · Editorial · Buenos Aires</p>
-    <button class="intro-enter" id="enter-btn" onclick="enterSite()">Enter</button>
-  </div>
+    <div class="work-header" id="work">
+      <span class="work-label">Selected work</span>
+      <span class="work-count">6 projects</span>
+    </div>
 
-  <div id="main">
-    <div class="port">
-      <nav>
-        <a href="index.html" class="nav-name">Luciana Salomón</a>
-        <ul class="nav-links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#add9d8edc8c0ccc4c183cec2c0">Contact</a></li>
-        </ul>
-      </nav>
+        <div class="project-list">
 
-      <section class="hero">
-        <p class="hero-label">Design · Illustration · Editorial</p>
-        <h1 class="hero-title">Making things <em>with intention</em></h1>
-        <p class="hero-desc">Senior Production Designer and illustrator. I build visual systems, books, and objects that exist in the real world.</p>
-      </section>
-
-      <p class="section-label" id="work">Selected work</p>
-
-      <div class="projects-grid">
-
-        <a href="desbloqueados.html" class="project-card featured">
-          <div>
-            <p class="project-num">01</p>
-            <div class="project-thumb thumb-desbloqueados">
-              <img src="img/desbloqueados_1.jpg" alt="Desbloqueados">
-            </div>
+      <a href="desbloqueados.html" class="project-item">
+        <img src="img/desbloqueados_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">01</span>
+          <span class="project-name">Desbloqueados</span>
+          <div class="project-tags">
+            <span class="tag">Packaging</span>
+            <span class="tag">Illustration</span>
+            <span class="tag">Identity</span>
           </div>
-          <div>
-            <h2 class="project-title">Desbloqueados</h2>
-            <div class="project-tags">
-              <span class="tag">Packaging</span>
-              <span class="tag">Illustration</span>
-              <span class="tag">Identity</span>
-            </div>
-            <p class="project-desc">Complete visual identity and packaging design for a children's board game. Character design, color system, and print-ready artwork.</p>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
+        </div>
+      </a>
 
-        <a href="pole.html" class="project-card">
-          <p class="project-num">02</p>
-          <div class="project-thumb thumb-pole">
-            <img src="img/pole_1.jpg" alt="Un Año de Pole">
+      <a href="opera.html" class="project-item">
+        <img src="img/opera_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">02</span>
+          <span class="project-name">Teatro Ópera</span>
+          <div class="project-tags">
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Environmental</span>
+            <span class="tag">Mockup</span>
           </div>
-          <h2 class="project-title">Un Año de Pole</h2>
+        </div>
+      </a>
+
+      <a href="pole.html" class="project-item">
+        <img src="img/pole_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">03</span>
+          <span class="project-name">Un Año de Pole</span>
           <div class="project-tags">
             <span class="tag">Fanzine</span>
             <span class="tag">Illustration</span>
             <span class="tag">Editorial</span>
           </div>
-          <p class="project-desc">Personal zine documenting one year of pole sport. Analog illustration, layout design, and self-published print run.</p>
-          <span class="arrow">↗</span>
-        </a>
+        </div>
+      </a>
 
-        <a href="centauro.html" class="project-card">
-          <p class="project-num">03</p>
-          <div class="project-thumb thumb-centauro">
-            <img src="img/centauro_1.jpg" alt="El Centauro">
-          </div>
-          <h2 class="project-title">El Centauro de Guerin</h2>
+      <a href="centauro.html" class="project-item">
+        <img src="img/centauro_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">04</span>
+          <span class="project-name">El Centauro de Guerin</span>
           <div class="project-tags">
             <span class="tag">Book Design</span>
             <span class="tag">Illustration</span>
             <span class="tag">Print</span>
           </div>
-          <p class="project-desc">Art book design with original illustrated cover and four postcards. Exhibited at Museo de la Cárcova, Buenos Aires.</p>
-          <span class="arrow">↗</span>
-        </a>
-
-        <a href="doce-hechizos.html" class="project-card featured">
-          <div>
-            <p class="project-num">04</p>
-            <div class="project-thumb thumb-doce">
-              <img src="img/doce_1.jpg" alt="Doce Hechizos">
-            </div>
-          </div>
-          <div>
-            <h2 class="project-title">Doce Hechizos</h2>
-            <div class="project-tags">
-              <span class="tag">Graphic System</span>
-              <span class="tag">Illustration</span>
-              <span class="tag">Editorial</span>
-            </div>
-            <p class="project-desc">Complete graphic system exploring color, synthesis, and visual identity — calendar, masks, bookmarks, and notebook.</p>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
-
-        <a href="client-work.html" class="project-card featured">
-          <div>
-            <p class="project-num">05</p>
-            <div class="project-thumb thumb-client">
-              <img src="img/client_1.jpg" alt="Client Work">
-            </div>
-          </div>
-          <div>
-            <h2 class="project-title">Client Work</h2>
-            <div class="project-tags">
-              <span class="tag">Direct Mail</span>
-              <span class="tag">Production Design</span>
-              <span class="tag tag-private">Private</span>
-            </div>
-            <p class="project-desc">Production design for direct mail fundraising campaigns for U.S. nonprofit clients. Password protected — available upon request.</p>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
-
-      </div>
-
-      <section class="about" id="about">
-        <div>
-          <h2 class="about-title">Design with a <em>dark side</em></h2>
-          <p class="about-text">I'm a Senior Production Designer and illustrator based in Buenos Aires. I graduated from FADU-UBA and I work at the intersection of editorial design, illustration, and production.</p>
-          <p class="about-text">My personal work lives between the cute and the uncanny — analog materials, mythological sensibility, objects that exist in the physical world.</p>
         </div>
-        <div>
-          <p class="section-label" style="margin-top:0;">Disciplines</p>
-          <ul class="skills-list">
-            <li>Editorial design</li>
-            <li>Illustration</li>
-            <li>Book design</li>
-            <li>Packaging</li>
-            <li>Graphic systems</li>
-            <li>Self-publishing</li>
-            <li>InDesign / Illustrator</li>
-            <li>HTML / CSS</li>
-          </ul>
-        </div>
-      </section>
+      </a>
 
-      <footer>
-        <span class="footer-name">Luciana Salomón</span>
-        <div class="footer-links">
-          <a href="https://linkedin.com/in/lucianasalomon" target="_blank">LinkedIn</a>
-          <a href="https://instagram.com/hice_todo_esto" target="_blank">Instagram</a>
-          <a href="/cdn-cgi/l/email-protection#8efafbceebe3efe7e2a0ede1e3">Contact</a>
+      <a href="doce-hechizos.html" class="project-item">
+        <img src="img/doce_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">05</span>
+          <span class="project-name">Doce Hechizos</span>
+          <div class="project-tags">
+            <span class="tag">Graphic System</span>
+            <span class="tag">Illustration</span>
+            <span class="tag">Editorial</span>
+          </div>
         </div>
-      </footer>
+      </a>
+
+      <a href="client-work.html" class="project-item">
+        <img src="img/client_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">06</span>
+          <span class="project-name">Client Work</span>
+          <div class="project-tags">
+            <span class="tag">Direct Mail</span>
+            <span class="tag">Production Design</span>
+            <span class="tag tag-private">Private</span>
+          </div>
+        </div>
+      </a>
+
     </div>
+
+    <footer><footer>
+      <span class="footer-copy">© 2025 Luciana Salomón</span>
+    </footer>
   </div>
 
   <script>
-    // Intro animation — only on first visit per session
-    window.addEventListener('load', function() {
-      var seen = false;
-      try { seen = sessionStorage.getItem('introSeen'); } catch(e) {}
-      if (seen) {
-        document.getElementById('intro').style.display = 'none';
-        document.getElementById('main').classList.add('show');
-        return;
-      }
-      setTimeout(function() { document.getElementById('l1').classList.add('show'); }, 300);
-      setTimeout(function() { document.getElementById('l2').classList.add('show'); }, 800);
-      setTimeout(function() { document.getElementById('l3').classList.add('show'); }, 1300);
-      setTimeout(function() { document.getElementById('l4').classList.add('show'); }, 1800);
-      setTimeout(function() { document.getElementById('enter-btn').classList.add('show'); }, 2200);
-    });
-
-    function enterSite() {
-      try { sessionStorage.setItem('introSeen', '1'); } catch(e) {}
-      document.getElementById('intro').classList.add('hidden');
-      document.getElementById('main').classList.add('show');
-    }
-
-    // Page transition on click
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('a');
-      if (!link) return;
-      var href = link.getAttribute('href');
-      if (!href || href.startsWith('mailto') || href.startsWith('http') || href.startsWith('#')) return;
-      e.preventDefault();
-      var overlay = document.getElementById('page-transition');
-      overlay.style.opacity = '1';
-      overlay.style.pointerEvents = 'all';
-      setTimeout(function() { window.location.href = href; }, 350);
-    });
-  </script>
-
-</body>
-</html>
+    document.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) return;
+        e.preventDefault();
+        docum

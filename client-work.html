@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#ffffff; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
+    :root { --bg:#faf9f7; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
     body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
     .port { max-width:960px; margin:0 auto; padding:0 2rem 5rem; }
     nav { display:flex; justify-content:space-between; align-items:center; padding:2rem 0 3rem; border-bottom:0.5px solid var(--border); margin-bottom:4rem; }
@@ -46,15 +46,18 @@
     .project-nav a { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
     .project-nav a:hover { color:var(--text); }
     @media (max-width:600px) { .grid { grid-template-columns:1fr; } .grid .full { grid-column:span 1; } }
-
-    #page-transition { position:fixed; inset:0; background:#111; opacity:0; pointer-events:none; z-index:999; transition:opacity 0.35s ease; }
-    #page-transition.fade-in { opacity:1; pointer-events:all; }
     .port { opacity:0; animation: fadeUp 0.5s ease 0.1s forwards; }
     @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+    #curtain { position:fixed; inset:0; background:#111; z-index:999; transform:translateY(-100%); }
+    #curtain.fall { animation: curtainFall 0.4s cubic-bezier(0.86,0,0.07,1) forwards; }
+    #curtain.rise { animation: curtainRise 0.5s cubic-bezier(0.86,0,0.07,1) forwards; }
+    @keyframes curtainFall { from { transform:translateY(100%); } to { transform:translateY(0); } }
+    @keyframes curtainRise { from { transform:translateY(0); } to { transform:translateY(-100%); } }
   </style>
 </head>
 <body>
-  <div id="page-transition"></div>
+  <div id="curtain"></div>
   <div class="port">
     <nav>
       <a href="index.html" class="nav-name">Luciana Salomón</a>
@@ -83,27 +86,45 @@
       <p class="project-intro">Production design for direct mail fundraising campaigns. Work produced at Connaxis for RKD Group clients.</p>
       <p class="notice">All work shown here was produced under agency guidelines. Mockups are for presentation purposes only.</p>
 
-      <p class="section-label">Massachusetts General Hospital — MGB</p>
+      <p class="section-label">Massachusetts General Hospital</p>
 
       <div class="campaign">
-        <h2 class="campaign-title">Annual Giving Campaign</h2>
-        <p class="campaign-meta">Direct mail · Envelope, calendar, brochure · Production Design</p>
-        <p class="campaign-desc">Full direct mail package production including outer envelope, wall calendar, and reply brochure. Managed file setup, prepress specifications, and print-ready output for a multi-piece fundraising campaign.</p>
+        <h2 class="campaign-title">MGH — Direct Mail</h2>
+        <p class="campaign-meta">Direct mail · Production Design · RKD Group</p>
+        <p class="campaign-desc">Full direct mail package production for Massachusetts General Hospital fundraising campaigns. File setup, prepress specifications, and print-ready output.</p>
         <div class="grid">
-          <img src="img/client_1.jpg" alt="Calendar" class="full">
-          <img src="img/client_2.jpg" alt="Envelope">
-          <img src="img/client_3.jpg" alt="Brochure">
+          <img src="img/MGH_1.jpg" alt="" class="full">
+          <img src="img/MGH_2.jpg" alt="">
+          <img src="img/MGH_3.jpg" alt="">
+          <img src="img/MGH_4.jpg" alt="">
+          <img src="img/MGH_5.jpg" alt="">
+          <img src="img/MGH_6.jpg" alt="" class="full">
         </div>
       </div>
 
+      <p class="section-label">Newsletters</p>
+
       <div class="campaign">
-        <h2 class="campaign-title">DirecTV — Campaign</h2>
-        <p class="campaign-meta">Direct mail · Production Design</p>
-        <p class="campaign-desc">Production design for direct mail campaign materials. File preparation, spec compliance, and print-ready delivery.</p>
+        <h2 class="campaign-title">Email Newsletters — RKD Group</h2>
+        <p class="campaign-meta">Digital · Email Design · Production Design</p>
+        <p class="campaign-desc">Newsletter production for RKD Group clients. Template setup, asset preparation, and production-ready output.</p>
         <div class="grid">
-          <img src="img/directv_1.jpg" alt="" class="full">
-          <img src="img/directv_2.jpg" alt="">
-          <img src="img/directv_3.jpg" alt="">
+          <img src="img/NL_1.jpg" alt="" class="full">
+          <img src="img/NL_2.jpg" alt="">
+          <img src="img/NL_3.jpg" alt="">
+        </div>
+      </div>
+
+      <p class="section-label">DirecTV</p>
+
+      <div class="campaign">
+        <h2 class="campaign-title">DirecTV — Direct Mail</h2>
+        <p class="campaign-meta">Direct mail · Production Design</p>
+        <p class="campaign-desc">Production design for DirecTV direct mail campaign materials. File preparation, spec compliance, and print-ready delivery.</p>
+        <div class="grid">
+          <img src="img/dtv_1.jpg" alt="" class="full">
+          <img src="img/dtv_2.jpg" alt="">
+          <img src="img/dtv_3.jpg" alt="">
         </div>
       </div>
 
@@ -131,15 +152,24 @@
       }
     }
   </script>
+  
+  
   <script>
-    document.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        var href = this.getAttribute('href');
-        if (!href || href.startsWith('mailto') || href.startsWith('http') || href.startsWith('#')) return;
+    window.addEventListener('load', function() {
+      var c = document.getElementById('curtain');
+      c.style.clipPath = 'circle(150% at 50% 50%)';
+      c.classList.add('collapse');
+    });
+    document.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) return;
         e.preventDefault();
-        var overlay = document.getElementById('page-transition');
-        overlay.classList.add('fade-in');
-        setTimeout(function() { window.location.href = href; }, 350);
+        var c = document.getElementById('curtain');
+        c.classList.remove('collapse');
+        c.style.clipPath = 'circle(0% at 50% 50%)';
+        c.classList.add('expand');
+        setTimeout(function() { window.location.href = href; }, 500);
       });
     });
   </script>
