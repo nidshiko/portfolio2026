@@ -58,6 +58,15 @@
       .project-name { font-size:24px; }
       .project-tags { display:none; }
     }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:0; }
+    .hamburger span { display:block; width:22px; height:1px; background:var(--text); transition:all 0.3s ease; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; background:var(--bg); z-index:998; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:'DM Serif Display',serif; font-size:32px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
+    @media (max-width:600px) { .hamburger { display:flex; } .nav-links { display:none !important; } }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
@@ -70,6 +79,11 @@
 </head>
 <body>
   <div id="curtain"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="portfolio.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="cv.html">CV</a>
+  </div>
   <div class="port">
     <nav>
       <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
@@ -78,6 +92,9 @@
         <li><a href="about.html">About</a></li>
         <li><a href="cv.html">CV</a></li>
       </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <div class="work-header" id="work">
@@ -173,7 +190,7 @@
     </div>
 
     <footer>
-      <span class="footer-copy">© 2026 Luciana Salomón</span>
+      <span class="footer-copy">© 2025 Luciana Salomón</span>
     </footer>
   </div>
 
