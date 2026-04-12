@@ -2,112 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client Work — Luciana Salomón</title>
+  <title>Selected Client Work — Luciana Salomón</title>
+  <meta name="description" content="Production design for direct mail and digital campaigns. U.S. nonprofit clients including Massachusetts General Hospital, produced at Connaxis for RKD Group.">
+  <meta name="author" content="Luciana Salomón">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lucianasalomon.com/img/og_image.jpg">
+  <meta property="og:url" content="https://lucianasalomon.com/client-work.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Client Work — Luciana Salomón">
+  <meta property="og:description" content="Production design for direct mail and digital campaigns.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg:#faf9f7; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
-    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
-    .port { max-width:960px; margin:0 auto; padding:0 2rem 5rem; }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:2rem 0 3rem; border-bottom:0.5px solid var(--border); margin-bottom:4rem; }
-    .nav-name { font-family:'DM Serif Display',serif; font-size:18px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
-    .back-link { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
-    .back-link:hover { color:var(--text); }
-    #gate { min-height:60vh; display:flex; flex-direction:column; justify-content:center; max-width:380px; }
-    .gate-label { font-size:11px; font-weight:300; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:1.5rem; }
-    .gate-title { font-family:'DM Serif Display',serif; font-size:32px; letter-spacing:-0.02em; line-height:1.1; margin-bottom:0.75rem; }
-    .gate-title em { font-style:italic; color:var(--text-secondary); }
-    .gate-desc { font-size:14px; font-weight:300; color:var(--text-secondary); line-height:1.6; margin-bottom:2rem; }
-    .gate-row { display:flex; border:0.5px solid var(--border); border-radius:3px; overflow:hidden; }
-    #pwd-input { flex:1; padding:0.75rem 1rem; font-family:'Archivo',sans-serif; font-size:14px; font-weight:300; border:none; outline:none; background:var(--bg); color:var(--text); letter-spacing:0.1em; }
-    #pwd-btn { padding:0.75rem 1.25rem; font-family:'Archivo',sans-serif; font-size:12px; font-weight:300; letter-spacing:0.08em; text-transform:uppercase; border:none; border-left:0.5px solid var(--border); background:var(--bg); color:var(--text-secondary); cursor:pointer; transition:background 0.2s; }
-    #pwd-btn:hover { background:var(--hover-bg); }
-    #pwd-error { font-size:12px; color:#c0392b; margin-top:0.75rem; font-weight:300; display:none; }
-    #content { display:none; }
+    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; animation:fadeIn 0.3s ease forwards; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .port { max-width:1100px; margin:0 auto; padding:0 3rem 6rem; }
+    nav { display:flex; justify-content:space-between; align-items:baseline; padding:2rem 0; margin-bottom:4rem; }
+    .nav-name { font-family:'Archivo',sans-serif; font-size:14px; font-weight:500; letter-spacing:-0.01em; text-decoration:none; color:var(--text); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:11px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
     .project-meta { display:flex; gap:1rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
     .project-num { font-size:11px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.1em; }
     .tag { font-size:10px; font-weight:300; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-tertiary); border:0.5px solid var(--border); padding:3px 8px; border-radius:2px; }
     .tag-private { background:var(--hover-bg); border:none; }
-    .project-title { font-family:'DM Serif Display',serif; font-size:clamp(32px,5vw,48px); letter-spacing:-0.03em; line-height:1.05; margin-bottom:1rem; }
-    .project-intro { font-size:15px; font-weight:300; color:var(--text-secondary); line-height:1.7; max-width:560px; margin-bottom:0.75rem; }
+    .project-title { font-family:'DM Serif Display',serif; font-size:clamp(36px,6vw,56px); letter-spacing:-0.03em; line-height:1.05; margin-bottom:1.5rem; }
+    .project-intro { font-size:15px; font-weight:300; color:var(--text-secondary); line-height:1.7; max-width:560px; margin-bottom:3rem; }
+    .gate { max-width:400px; margin:4rem auto; text-align:center; }
+    .gate p { font-size:13px; font-weight:300; color:var(--text-tertiary); margin-bottom:1.5rem; }
+    .gate-row { display:flex; border:0.5px solid var(--border); border-radius:3px; overflow:hidden; }
+    #pwd-input { flex:1; padding:0.75rem 1rem; font-family:'Archivo',sans-serif; font-size:14px; font-weight:300; border:none; outline:none; background:var(--bg); color:var(--text); letter-spacing:0.1em; }
+    #pwd-btn { padding:0.75rem 1.25rem; font-family:'Archivo',sans-serif; font-size:12px; font-weight:300; letter-spacing:0.08em; text-transform:uppercase; border:none; border-left:0.5px solid var(--border); background:var(--bg); color:var(--text-secondary); cursor:pointer; }
+    #pwd-btn:hover { background:var(--hover-bg); }
+    #pwd-error { font-size:12px; color:#c0392b; margin-top:0.75rem; display:none; }
+    #content { display:none; }
     .notice { font-size:12px; font-weight:300; color:var(--text-tertiary); line-height:1.6; max-width:480px; padding:0.75rem 1rem; border-left:2px solid var(--border); margin-bottom:4rem; }
     .section-label { font-size:11px; font-weight:300; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:2rem; padding-bottom:1rem; border-bottom:0.5px solid var(--border); }
     .campaign { margin-bottom:4rem; padding-bottom:4rem; border-bottom:0.5px solid var(--border); }
-    .campaign:last-of-type { border-bottom:none; }
+    .campaign:last-of-type { border-bottom:none; padding-bottom:0; }
     .campaign-title { font-family:'DM Serif Display',serif; font-size:24px; letter-spacing:-0.02em; margin-bottom:0.4rem; }
     .campaign-meta { font-size:12px; font-weight:300; color:var(--text-tertiary); margin-bottom:1rem; }
     .campaign-desc { font-size:14px; font-weight:300; color:var(--text-secondary); line-height:1.7; max-width:560px; margin-bottom:2rem; }
     .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
-    .grid img { width:100%; border-radius:4px; display:block; }
+    .grid img { width:100%; border-radius:4px; display:block; cursor:zoom-in; }
     .grid .full { grid-column:span 2; }
-    .project-nav { display:flex; justify-content:space-between; padding-top:3rem; border-top:0.5px solid var(--border); margin-top:3rem; }
+    .project-nav { display:flex; justify-content:space-between; padding-top:3rem; margin-top:2rem; border-top:0.5px solid var(--border); }
     .project-nav a { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
     .project-nav a:hover { color:var(--text); }
-    @media (max-width:600px) { .grid { grid-template-columns:1fr; } .grid .full { grid-column:span 1; } }
-    .port { opacity:0; animation: fadeUp 0.5s ease 0.1s forwards; }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-
-    #curtain { position:fixed; inset:0; background:#111; z-index:999; transform:translateY(-100%); }
-    #curtain.fall { animation: curtainFall 0.4s cubic-bezier(0.86,0,0.07,1) forwards; }
-    #curtain.rise { animation: curtainRise 0.5s cubic-bezier(0.86,0,0.07,1) forwards; }
-    @keyframes curtainFall { from { transform:translateY(100%); } to { transform:translateY(0); } }
-    @keyframes curtainRise { from { transform:translateY(0); } to { transform:translateY(-100%); } }
+    #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9998; align-items:center; justify-content:center; }
+    #lightbox.open { display:flex; }
+    #lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; border-radius:2px; }
+    #lb-close { position:fixed; top:1.5rem; right:2rem; font-family:'Archivo',sans-serif; font-size:12px; font-weight:300; color:#fff; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; }
+    .fade-observe { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .fade-observe.visible { opacity:1; transform:translateY(0); }
+    #curtain { position:fixed; inset:0; background:var(--bg); z-index:999; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    #curtain.cover { opacity:1; pointer-events:all; }
+    @media (max-width:600px) { .port { padding:0 1.5rem 4rem; } .grid { grid-template-columns:1fr; } .grid .full { grid-column:span 1; } .nav-links { display:none; } }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HM398XTRWW');
+  </script>
 </head>
 <body>
   <div id="curtain"></div>
+  <div id="lightbox">
+    <span id="lb-close">Close ×</span>
+    <img id="lb-img" src="" alt="">
+  </div>
   <div class="port">
     <nav>
-      <a href="index.html" class="nav-name">Luciana Salomón</a>
-      <a href="index.html" class="back-link">← All work</a>
+      <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
+      <ul class="nav-links">
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
     </nav>
 
-    <div id="gate">
-      <p class="gate-label">Private</p>
-      <h1 class="gate-title">Client <em>work</em></h1>
-      <p class="gate-desc">This section contains work produced under NDA for agency clients. Access is available upon request.</p>
+    <div class="project-meta">
+      <span class="project-num">06</span>
+      <span class="tag">Direct Mail</span>
+      <span class="tag">Production Design</span>
+      <span class="tag tag-private">Access upon request</span>
+    </div>
+    <h1 class="project-title">Selected Client Work</h1>
+    <p class="project-intro">Production design for direct mail and digital campaigns. U.S. and regional clients, high-volume output, print-ready and digital delivery.</p>
+
+    <div class="gate" id="gate">
+      <p>This section is password protected.</p>
       <div class="gate-row">
-        <input type="password" id="pwd-input" placeholder="Password" autocomplete="off">
-        <button id="pwd-btn" onclick="checkPassword()">Enter</button>
+        <input type="password" id="pwd-input" placeholder="Password">
+        <button id="pwd-btn">Enter</button>
       </div>
       <p id="pwd-error">Incorrect password.</p>
     </div>
 
     <div id="content">
-      <div class="project-meta">
-        <span class="project-num">05</span>
-        <span class="tag">Direct Mail</span>
-        <span class="tag">Production Design</span>
-        <span class="tag tag-private">Confidential</span>
-      </div>
-      <h1 class="project-title">Client Work</h1>
-      <p class="project-intro">Production design for direct mail fundraising campaigns. Work produced at Connaxis for RKD Group clients.</p>
-      <p class="notice">All work shown here was produced under agency guidelines. Mockups are for presentation purposes only.</p>
+      <p class="notice">Work produced at Connaxis for RKD Group, and at Hogarth. Available upon request for qualified opportunities.</p>
 
-      <p class="section-label">Massachusetts General Hospital</p>
+      <p class="section-label">RKD Group — Connaxis</p>
 
       <div class="campaign">
-        <h2 class="campaign-title">MGH — Direct Mail</h2>
+        <h2 class="campaign-title">Massachusetts General Hospital</h2>
         <p class="campaign-meta">Direct mail · Production Design · RKD Group</p>
-        <p class="campaign-desc">Full direct mail package production for Massachusetts General Hospital fundraising campaigns. File setup, prepress specifications, and print-ready output.</p>
+        <p class="campaign-desc">Massachusetts General Hospital is one of the most established healthcare brands in the United States. The work shown here spans multiple direct mail campaigns produced at Connaxis for RKD Group, including annual giving, major gifts, and acquisition packages.<br><br>My role operates at the intersection of design and production, collaborating closely with art directors, creative directors, copywriters, and account teams to develop campaign materials and carry them through to print. The focus is on translating creative into production-ready systems — managing art edits, ensuring spec compliance, and overseeing prepress and final delivery. The work demands precision at scale, where consistency and accuracy are critical across high-volume outputs.</p>
         <div class="grid">
           <img src="img/MGH_1.jpg" alt="" class="full">
           <img src="img/MGH_2.jpg" alt="">
           <img src="img/MGH_3.jpg" alt="">
           <img src="img/MGH_4.jpg" alt="">
-          <img src="img/MGH_5.jpg" alt="">
-          <img src="img/MGH_6.jpg" alt="" class="full">
         </div>
       </div>
 
-      <p class="section-label">Newsletters</p>
-
       <div class="campaign">
-        <h2 class="campaign-title">Email Newsletters — RKD Group</h2>
-        <p class="campaign-meta">Digital · Email Design · Production Design</p>
-        <p class="campaign-desc">Newsletter production for RKD Group clients. Template setup, asset preparation, and production-ready output.</p>
+        <h2 class="campaign-title">Email Newsletters</h2>
+        <p class="campaign-meta">Print · Newsletter design · RKD Group</p>
+        <p class="campaign-desc">Newsletter work follows the same production model developed for RKD Group, with slightly more room for creative input — particularly in layout, hierarchy, and visual balance — while still operating within established brand frameworks.</p>
         <div class="grid">
           <img src="img/NL_1.jpg" alt="" class="full">
           <img src="img/NL_2.jpg" alt="">
@@ -115,12 +135,12 @@
         </div>
       </div>
 
-      <p class="section-label">DirecTV</p>
+      <p class="section-label">Hogarth</p>
 
       <div class="campaign">
-        <h2 class="campaign-title">DirecTV — Direct Mail</h2>
-        <p class="campaign-meta">Direct mail · Production Design</p>
-        <p class="campaign-desc">Production design for DirecTV direct mail campaign materials. File preparation, spec compliance, and print-ready delivery.</p>
+        <h2 class="campaign-title">DirecTV</h2>
+        <p class="campaign-meta">Digital production</p>
+        <p class="campaign-desc">DirecTV campaign materials produced at Hogarth — digital-first assets including email templates, web banners, social media content, and on-screen graphics for set-top box interfaces. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions, and contexts. The focus was on maintaining consistency and clarity while translating the same campaign across a fragmented digital ecosystem.</p>
         <div class="grid">
           <img src="img/dtv_1.jpg" alt="" class="full">
           <img src="img/dtv_2.jpg" alt="">
@@ -129,47 +149,70 @@
       </div>
 
       <div class="project-nav">
-        <a href="index.html">← All work</a>
-      </div>
+      <a href="centauro.html">← Previous</a>
+      <span></span>
+    </div>
     </div>
   </div>
 
   <script>
-    document.getElementById('pwd-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') checkPassword();
-    });
-    function checkPassword() {
-      var pwd = document.getElementById('pwd-input').value;
-      var correct = 'luciana2026'; // Cambiá esto por tu contraseña
-      if (pwd === correct) {
+    // Password
+    document.getElementById('pwd-btn').addEventListener('click', function() {
+      if (document.getElementById('pwd-input').value === 'luciana2026') {
         document.getElementById('gate').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-        document.getElementById('pwd-error').style.display = 'none';
+        initLightbox();
+        initScroll();
       } else {
         document.getElementById('pwd-error').style.display = 'block';
-        document.getElementById('pwd-input').value = '';
-        document.getElementById('pwd-input').focus();
       }
-    }
-  </script>
-  
-  
-  <script>
-    window.addEventListener('load', function() {
-      var c = document.getElementById('curtain');
-      c.style.clipPath = 'circle(150% at 50% 50%)';
-      c.classList.add('collapse');
     });
+    document.getElementById('pwd-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') document.getElementById('pwd-btn').click();
+    });
+
+    function initLightbox() {
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      document.querySelectorAll('.grid img').forEach(function(img) {
+        img.addEventListener('click', function() {
+          lbImg.src = img.src;
+          lb.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      document.getElementById('lb-close').addEventListener('click', function() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+      lb.addEventListener('click', function(e) {
+        if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+    }
+
+    function initScroll() {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.grid img').forEach(function(el) {
+        el.classList.add('fade-observe');
+        obs.observe(el);
+      });
+    }
+
+    // Transitions
     document.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', function(e) {
         var href = a.getAttribute('href');
-        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) return;
+        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#') || href.includes('#') || a.hasAttribute('download')) return;
         e.preventDefault();
-        var c = document.getElementById('curtain');
-        c.classList.remove('collapse');
-        c.style.clipPath = 'circle(0% at 50% 50%)';
-        c.classList.add('expand');
-        setTimeout(function() { window.location.href = href; }, 500);
+        document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
       });
     });
   </script>

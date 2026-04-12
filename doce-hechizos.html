@@ -2,18 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doce Hechizos — Luciana Salomón</title>
+  <meta name="description" content="Visual system and illustration for a Halloween-inspired universe.">
+  <meta name="author" content="Luciana Salomón">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lucianasalomon.com/img/og_image.jpg">
+  <meta property="og:url" content="https://lucianasalomon.com/doce-hechizos.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Doce Hechizos — Luciana Salomón">
+  <meta property="og:description" content="Visual system and illustration for a Halloween-inspired universe.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg:#faf9f7; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
-    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
-    .port { max-width:960px; margin:0 auto; padding:0 2rem 5rem; opacity:0; animation:fadeUp 0.5s ease 0.1s forwards; }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:2rem 0 3rem; border-bottom:0.5px solid var(--border); margin-bottom:4rem; }
-    .nav-name { font-family:'DM Serif Display',serif; font-size:18px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
+    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; animation:fadeIn 0.3s ease forwards; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .port { max-width:1100px; margin:0 auto; padding:0 3rem 6rem; }
+    nav { display:flex; justify-content:space-between; align-items:baseline; padding:2rem 0; margin-bottom:4rem; }
+    .nav-name { font-family:'Archivo',sans-serif; font-size:14px; font-weight:500; letter-spacing:-0.01em; text-decoration:none; color:var(--text); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:11px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
     .back-link { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
     .back-link:hover { color:var(--text); }
     .project-meta { display:flex; gap:1rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
@@ -21,7 +34,7 @@
     .tag { font-size:10px; font-weight:300; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-tertiary); border:0.5px solid var(--border); padding:3px 8px; border-radius:2px; }
     .project-title { font-family:'DM Serif Display',serif; font-size:clamp(36px,6vw,56px); letter-spacing:-0.03em; line-height:1.05; margin-bottom:1.5rem; }
     .project-intro { font-size:16px; font-weight:300; color:var(--text-secondary); line-height:1.7; max-width:560px; margin-bottom:3rem; }
-    .hero-img { width:100%; aspect-ratio:16/9; border-radius:4px; overflow:hidden; margin-bottom:4rem; background:#3B1F7A; }
+    .hero-img { width:100%; aspect-ratio:16/9; border-radius:4px; overflow:hidden; margin-bottom:4rem; }
     .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
     .project-body { display:grid; grid-template-columns:2fr 1fr; gap:4rem; margin-bottom:4rem; padding-bottom:4rem; border-bottom:0.5px solid var(--border); }
     .body-text p { font-size:15px; font-weight:300; color:var(--text-secondary); line-height:1.8; margin-bottom:1.5rem; }
@@ -29,7 +42,7 @@
     .detail-label { font-size:10px; font-weight:300; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:0.25rem; }
     .detail-value { font-size:13px; font-weight:300; color:var(--text-secondary); }
     .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-bottom:4rem; }
-    .grid img { width:100%; border-radius:4px; display:block; cursor:pointer; }
+    .grid img { width:100%; border-radius:4px; display:block; cursor:zoom-in; }
     .grid .full { grid-column:span 2; }
     .project-nav { display:flex; justify-content:space-between; padding-top:2rem; border-top:0.5px solid var(--border); }
     .project-nav a { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
@@ -40,14 +53,18 @@
     #lb-close { position:fixed; top:1.5rem; right:2rem; font-family:'Archivo',sans-serif; font-size:12px; font-weight:300; color:#fff; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; }
     .fade-observe { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
     .fade-observe.visible { opacity:1; transform:translateY(0); }
-    @media (max-width:600px) { .project-body { grid-template-columns:1fr; } .grid { grid-template-columns:1fr; } .grid .full { grid-column:span 1; } }
-
-    #curtain { position:fixed; inset:0; background:#111; z-index:999; transform:translateY(-100%); }
-    #curtain.fall { animation: curtainFall 0.4s cubic-bezier(0.86,0,0.07,1) forwards; }
-    #curtain.rise { animation: curtainRise 0.5s cubic-bezier(0.86,0,0.07,1) forwards; }
-    @keyframes curtainFall { from { transform:translateY(100%); } to { transform:translateY(0); } }
-    @keyframes curtainRise { from { transform:translateY(0); } to { transform:translateY(-100%); } }
+    #curtain { position:fixed; inset:0; background:var(--bg); z-index:999; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    #curtain.cover { opacity:1; pointer-events:all; }
+    @media (max-width:600px) { .port { padding:0 1.5rem 4rem; } .project-body { grid-template-columns:1fr; } .grid { grid-template-columns:1fr; } .grid .full { grid-column:span 1; } .nav-links { display:none; } }
   </style>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HM398XTRWW');
+  </script>
 </head>
 <body>
   <div id="curtain"></div>
@@ -57,29 +74,28 @@
   </div>
   <div class="port">
     <nav>
-      <a href="index.html" class="nav-name">Luciana Salomón</a>
-      <a href="index.html" class="back-link">← All work</a>
+      <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
+      <ul class="nav-links">
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
     </nav>
     <div class="project-meta">
-      <span class="project-num">04</span>
-      <span class="tag">Graphic System</span>
-      <span class="tag">Illustration</span>
-      <span class="tag">Editorial</span>
+      <span class="project-num">03</span>
+      <span class="tag">Graphic System</span><span class="tag">Illustration</span><span class="tag">Editorial</span>
     </div>
     <h1 class="project-title">Doce Hechizos</h1>
-    <p class="project-intro">A complete graphic system exploring color, synthesis, and visual identity — calendar, masks, bookmarks, and notebook unified under one illustrated universe.</p>
-    <div class="hero-img"><img src="img/doce_1.jpg" alt="Doce Hechizos"></div>
+    <p class="project-intro">A visual system exploring how illustration can function consistently across different formats and scales.</p>
+    <div class="hero-img" style="background:#2D0A4E;"><img src="img/doce_1.jpg" alt="Doce Hechizos"></div>
     <div class="project-body">
       <div class="body-text">
-        <p>Doce Hechizos (Twelve Spells) is an illustrated collection developed for Mirada Gráfica, a professional development course at UBA focused on design and illustration.</p>
-        <p>The project builds a complete graphic system around a single illustrated character — a small black bat with pink ears — and extends it across multiple physical formats: a 2026 wall calendar, carton masks, bookmarks, and a notebook cover.</p>
-        <p>The visual language draws from Halloween aesthetics filtered through a kawaii sensibility: dark purple and orange palette, rounded forms, hand-lettered type, and a warmth that makes the uncanny feel welcoming.</p>
+        <p>Doce Hechizos (Twelve Spells) is a visual system exploring how illustration can function consistently across different formats and scales.</p>
+        <p>The brief was open, but the challenge was concrete: to build a complete system from scratch. The result is a Halloween-inspired universe applied across a 2026 calendar, stationery, and masks — all connected through a shared visual language.</p>
+        <p>The calendar became the central piece. I've designed calendars professionally for years, always within pre-existing systems. This project was the first time I built one from the ground up — from illustration to grid to typography — allowing for a level of control and expression rarely possible in commercial work.</p>
       </div>
       <div>
-        <div class="detail-item"><p class="detail-label">Year</p><p class="detail-value">2025</p></div>
-        <div class="detail-item"><p class="detail-label">Context</p><p class="detail-value">Mirada Gráfica, UBA</p></div>
-        <div class="detail-item"><p class="detail-label">Disciplines</p><p class="detail-value">Illustration, graphic system, editorial design</p></div>
-        <div class="detail-item"><p class="detail-label">Pieces</p><p class="detail-value">Calendar, masks, bookmarks, notebook</p></div>
+        <div class="detail-item"><p class="detail-label">Year</p><p class="detail-value">2025</p></div><div class="detail-item"><p class="detail-label">Context</p><p class="detail-value">Mirada Gráfica, UBA</p></div><div class="detail-item"><p class="detail-label">Format</p><p class="detail-value">Calendar, notebook, bookmarks, masks</p></div><div class="detail-item"><p class="detail-label">My role</p><p class="detail-value">Illustration, graphic system, design</p></div>
       </div>
     </div>
     <div class="grid">
@@ -95,29 +111,50 @@
     </div>
 
     <div class="project-nav">
-      <a href="centauro.html">← Previous</a>
-      <a href="index.html">All work →</a>
+      <a href="opera.html">← Previous</a>
+      <a href="pole.html">Next project →</a>
     </div>
   </div>
-  
-  
   <script>
-    window.addEventListener('load', function() {
-      var c = document.getElementById('curtain');
-      c.style.clipPath = 'circle(150% at 50% 50%)';
-      c.classList.add('collapse');
-    });
+    // Transitions
     document.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', function(e) {
         var href = a.getAttribute('href');
-        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#')) return;
+        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#') || href.includes('#') || a.hasAttribute('download')) return;
         e.preventDefault();
-        var c = document.getElementById('curtain');
-        c.classList.remove('collapse');
-        c.style.clipPath = 'circle(0% at 50% 50%)';
-        c.classList.add('expand');
-        setTimeout(function() { window.location.href = href; }, 500);
+        document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
       });
+    });
+    // Lightbox
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    document.querySelectorAll('.grid img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        lbImg.src = img.src;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    document.getElementById('lb-close').addEventListener('click', function() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+    // Scroll fade
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.grid img, .hero-img img').forEach(function(el) {
+      el.classList.add('fade-observe');
+      obs.observe(el);
     });
   </script>
 </body>

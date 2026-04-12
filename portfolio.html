@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luciana Salomón — Graphic Designer & Illustrator</title>
+  <meta name="description" content="Portfolio of Luciana Salomón, Graphic Designer and Illustrator based in Buenos Aires. Book design, editorial, packaging, illustration, and production design.">
+  <meta name="author" content="Luciana Salomón">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lucianasalomon.com/img/og_image.jpg">
+  <meta property="og:url" content="https://lucianasalomon.com/portfolio.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Luciana Salomón — Graphic Designer & Illustrator">
+  <meta property="og:description" content="Portfolio of Luciana Salomón, Graphic Designer and Illustrator based in Buenos Aires. Book design, editorial, packaging, illustration, and production design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#faf9f7; --text:#111111; --text-secondary:#555555; --text-tertiary:#999999; --border:rgba(0,0,0,0.12); --hover-bg:#f7f7f5; }
+    body { font-family:'Archivo',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+    #curtain { position:fixed; inset:0; background:var(--bg); z-index:999; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    #curtain.cover { opacity:1; pointer-events:all; }
+    body { animation: fadeIn 0.3s ease forwards; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    .port { max-width:1100px; margin:0 auto; padding:0 3rem 6rem; }
+    nav { display:flex; justify-content:space-between; align-items:baseline; padding:2rem 0; margin-bottom:4rem; }
+    .nav-name { font-family:'Archivo',sans-serif; font-size:14px; font-weight:500; letter-spacing:-0.01em; text-decoration:none; color:var(--text); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:11px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
+    .work-header { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:1rem; border-bottom:0.5px solid var(--border); margin-bottom:0; }
+    .work-label { font-size:11px; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-tertiary); }
+    .work-count { font-size:11px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.05em; }
+    .project-list { margin-bottom:4rem; }
+    .project-item { display:block; position:relative; text-decoration:none; color:inherit; overflow:hidden; border-bottom:0.5px solid var(--border); }
+    .project-item:first-child { border-top:0.5px solid var(--border); }
+    .project-strip { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; filter:brightness(1); transition:filter 0.5s ease; }
+    .project-item:hover .project-strip { filter:brightness(0.35); }
+    .project-overlay { position:absolute; inset:0; display:flex; align-items:center; padding:0 3rem; gap:2.5rem; opacity:0; transition:opacity 0.35s ease; }
+    .project-item:hover .project-overlay { opacity:1; }
+    .project-item:hover .project-name { transform:translateY(0); }
+    .project-num { font-size:11px; font-weight:300; color:rgba(255,255,255,0.5); letter-spacing:0.1em; flex-shrink:0; }
+    .project-name { font-family:'DM Serif Display',serif; font-size:clamp(28px,4vw,56px); letter-spacing:-0.03em; color:#ffffff; line-height:1; transform:translateY(8px); transition:transform 0.4s ease; }
+    .project-tags { display:flex; gap:6px; flex-wrap:wrap; margin-left:auto; }
+    .tag { font-size:10px; font-weight:300; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.6); border:0.5px solid rgba(255,255,255,0.3); padding:3px 9px; border-radius:2px; }
+    .tag-private { background:rgba(255,255,255,0.1); border-color:transparent; }
+
+    footer { padding-top:2rem; display:flex; justify-content:center; align-items:center; }
+    .footer-copy { font-size:11px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.05em; }
+
+    @media (max-width:600px) {
+      .port { padding:0 1.5rem 4rem; }
+      .nav-links { display:none; }
+      .project-name { font-size:24px; }
+      .project-tags { display:none; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HM398XTRWW');
+  </script>
+</head>
+<body>
+  <div id="curtain"></div>
+  <div class="port">
+    <nav>
+      <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
+      <ul class="nav-links">
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+
+    <div class="work-header" id="work">
+      <span class="work-label">Selected work</span>
+      <span class="work-count">6 projects</span>
+    </div>
+
+    <div class="project-list">
+
+
+      <a href="desbloqueados.html" class="project-item" data-preview="img/desbloqueados_1.jpg">
+        <img src="img/desbloqueados_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">01</span>
+          <span class="project-name">Desbloqueados</span>
+          <div class="project-tags">
+            <span class="tag">Packaging</span>
+            <span class="tag">Illustration</span>
+            <span class="tag">Identity</span>
+          </div>
+        </div>
+      </a>
+
+
+      <a href="opera.html" class="project-item">
+        <img src="img/opera_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">02</span>
+          <span class="project-name">Teatro Ópera</span>
+          <div class="project-tags">
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Environmental</span>
+            <span class="tag">Mockup</span>
+          </div>
+        </div>
+      </a>
+
+
+      <a href="doce-hechizos.html" class="project-item">
+        <img src="img/doce_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">03</span>
+          <span class="project-name">Doce Hechizos</span>
+          <div class="project-tags">
+            <span class="tag">Graphic System</span>
+            <span class="tag">Illustration</span>
+            <span class="tag">Editorial</span>
+          </div>
+        </div>
+      </a>
+
+
+      <a href="pole.html" class="project-item">
+        <img src="img/pole_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">04</span>
+          <span class="project-name">Un Año de Pole</span>
+          <div class="project-tags">
+            <span class="tag">Fanzine</span>
+            <span class="tag">Illustration</span>
+            <span class="tag">Editorial</span>
+          </div>
+        </div>
+      </a>
+
+
+      <a href="centauro.html" class="project-item">
+        <img src="img/centauro_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">05</span>
+          <span class="project-name">El Centauro</span>
+          <div class="project-tags">
+            <span class="tag">Book Design</span>
+            <span class="tag">Illustration</span>
+            <span class="tag">Print</span>
+          </div>
+        </div>
+      </a>
+
+
+      <a href="client-work.html" class="project-item">
+        <img src="img/client_1.jpg" alt="" class="project-strip">
+        <div class="project-overlay">
+          <span class="project-num">06</span>
+          <span class="project-name">Selected Client Work</span>
+          <div class="project-tags">
+            <span class="tag">Direct Mail</span>
+            <span class="tag">Production Design</span>
+            <span class="tag tag-private">Access upon request</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <span class="footer-copy">© 2025 Luciana Salomón</span>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#') || href.includes('#') || a.hasAttribute('download')) return;
+        e.preventDefault();
+        document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+</body>
+</html>
