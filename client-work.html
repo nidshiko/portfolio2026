@@ -60,6 +60,10 @@
     #lb-close { position:fixed; top:1.5rem; right:2rem; font-family:'Archivo',sans-serif; font-size:12px; font-weight:300; color:#fff; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; }
     .fade-observe { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
     .fade-observe.visible { opacity:1; transform:translateY(0); }
+
+    .slideshow { position:relative; width:100%; overflow:hidden; margin-top:1rem; margin-bottom:0; border-radius:4px; }
+    .slideshow-inner { display:flex; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1); will-change:transform; }
+    .slideshow-inner img { min-width:100%; width:100%; border-radius:4px; display:block; }
     #curtain { position:fixed; inset:0; background:var(--bg); z-index:999; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
     #curtain.cover { opacity:1; pointer-events:all; }
     @media (max-width:600px) { .port { padding:0 1.5rem 4rem; } .grid { grid-template-columns:1fr; } .grid .full { grid-column:span 1; } .nav-links { display:none; } }
@@ -172,11 +176,18 @@
       <div class="campaign">
         <h2 class="campaign-title" data-i18n="dtv_title">DirecTV</h2>
         <p class="campaign-meta" data-i18n="dtv_meta">Digital production</p>
-        <p class="campaign-desc" data-i18n="dtv_p1">DirecTV campaign materials produced at Hogarth — digital-first assets including email templates, web banners, social media content, and on-screen graphics for set-top box interfaces. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions, and contexts. The focus was on maintaining consistency and clarity while translating the same campaign across a fragmented digital ecosystem.</p>
+        <p class="campaign-desc" data-i18n="dtv_p1">DirecTV campaign materials produced at Hogarth — digital assets including email templates, web banners, social media content and on-screen graphics. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions and contexts. The goal was to maintain consistency while translating the same campaign across a varied digital ecosystem. The final set shows graphics for Channel 100 — DirecTV's exclusive subscriber channel, used to deliver promotional and entertainment content directly to users.</p>
         <div class="grid">
           <img src="img/dtv_1.jpg" alt="" class="full">
           <img src="img/dtv_2.jpg" alt="">
           <img src="img/dtv_3.jpg" alt="">
+          </div>
+      <div class="slideshow" id="dtv-slideshow">
+        <div class="slideshow-inner" id="dtv-inner">
+          <img src="img/dtv_decoder_1.jpg" alt="DirecTV set-top box interface">
+          <img src="img/dtv_decoder_2.jpg" alt="DirecTV set-top box interface">
+          <img src="img/dtv_decoder_3.jpg" alt="DirecTV set-top box interface">
+          <img src="img/dtv_decoder_4.jpg" alt="DirecTV set-top box interface">
         </div>
       </div>
 
@@ -270,7 +281,7 @@
         document.getElementById('mobile-menu').classList.remove('open');
       });
     }
-    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "gate_text": "This section is password protected.", "gate_placeholder": "Password", "gate_btn": "Enter", "gate_error": "Incorrect password.", "notice": "Work produced at Connaxis for RKD Group, and at Hogarth. Available upon request for qualified opportunities.", "section_rkd": "RKD Group — Connaxis", "section_hogarth": "Hogarth", "mgh_title": "Massachusetts General Hospital", "mgh_meta": "Direct mail · Production Design · RKD Group", "mgh_p1": "Massachusetts General Hospital is one of the largest healthcare brands in the United States. The work shown spans multiple mailing campaigns produced at Connaxis for RKD Group: annual giving, major donors and new donor acquisition.", "mgh_p2": "My role sits at the intersection of design and production. I work closely with art directors, creative directors, copywriters and account teams to develop campaign materials through to the final step: print.", "nl_title": "Newsletters", "nl_meta": "Print · Newsletter design · RKD Group", "nl_p1": "Newsletter work follows the same production model as RKD Group, with slightly more room for creative input — particularly in layout, hierarchy and visual balance — while staying within established brand frameworks.", "dtv_title": "DirecTV", "dtv_meta": "Digital production", "dtv_p1": "DirecTV campaign materials produced at Hogarth — digital assets including email templates, web banners, social media content and graphics for set-top box interfaces. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions and contexts. The goal was to maintain consistency while translating the same campaign across a varied digital ecosystem.", "tag_direct_mail": "Direct Mail", "tag_production": "Production Design", "tag_access": "Access upon request", "prev": "← Previous", "next": "Next project →"}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "gate_text": "Esta sección está protegida con contraseña.", "gate_placeholder": "Contraseña", "gate_btn": "Entrar", "gate_error": "Contraseña incorrecta.", "notice": "Trabajo producido en Connaxis para RKD Group, y en Hogarth. Disponible bajo solicitud para oportunidades calificadas.", "section_rkd": "RKD Group — Connaxis", "section_hogarth": "Hogarth", "mgh_title": "Massachusetts General Hospital", "mgh_meta": "Correo directo · Diseño de producción · RKD Group", "mgh_p1": "Massachusetts General Hospital es una de las marcas de salud más grandes de Estados Unidos. El trabajo que se muestra abarca múltiples campañas de mailing producidas en Connaxis para RKD Group: donaciones anuales, grandes contribuyentes y captación de nuevos donantes.", "mgh_p2": "Mi rol está en la intersección entre diseño y producción. Trabajo en conjunto con directores de arte, directores creativos, redactores y equipos de cuentas para desarrollar los materiales de cada campaña hasta el último paso: la impresión.", "nl_title": "Newsletters", "nl_meta": "Impresión · Diseño de newsletters · RKD Group", "nl_p1": "El trabajo de newsletters sigue el mismo modelo de producción de RKD Group, con un poco más de espacio para el aporte creativo — en layout, jerarquía y balance visual — siempre dentro de los lineamientos de marca.", "dtv_title": "DirecTV", "dtv_meta": "Producción digital", "dtv_p1": "Materiales de campaña para DirecTV producidos en Hogarth — piezas digitales incluyendo templates de email, banners web, contenido para redes sociales y gráficas para los canales del decodificador. Cada formato tenía sus propias restricciones técnicas, lo que requería adaptar el sistema visual a múltiples tamaños, resoluciones y contextos. El objetivo era mantener la consistencia y traducir la misma campaña en un ecosistema digital variado.", "tag_direct_mail": "Correo Directo", "tag_production": "Diseño de Producción", "tag_access": "Acceso bajo solicitud", "prev": "← Anterior", "next": "Siguiente proyecto →"} };
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "gate_text": "This section is password protected.", "gate_placeholder": "Password", "gate_btn": "Enter", "gate_error": "Incorrect password.", "notice": "Work produced at Connaxis for RKD Group, and at Hogarth. Available upon request for qualified opportunities.", "section_rkd": "RKD Group — Connaxis", "section_hogarth": "Hogarth", "mgh_title": "Massachusetts General Hospital", "mgh_meta": "Direct mail · Production Design · RKD Group", "mgh_p1": "Massachusetts General Hospital is one of the largest healthcare brands in the United States. The work shown spans multiple mailing campaigns produced at Connaxis for RKD Group: annual giving, major donors and new donor acquisition.", "mgh_p2": "My role sits at the intersection of design and production. I work closely with art directors, creative directors, copywriters and account teams to develop campaign materials through to the final step: print.", "nl_title": "Newsletters", "nl_meta": "Print · Newsletter design · RKD Group", "nl_p1": "Newsletter work follows the same production model as RKD Group, with slightly more room for creative input — particularly in layout, hierarchy and visual balance — while staying within established brand frameworks.", "dtv_title": "DirecTV", "dtv_meta": "Digital production", "dtv_p1": "DirecTV campaign materials produced at Hogarth — digital assets including email templates, web banners, social media content and on-screen graphics. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions and contexts. The goal was to maintain consistency while translating the same campaign across a varied digital ecosystem. The final set shows graphics for Channel 100 — DirecTV's exclusive subscriber channel, used to deliver promotional and entertainment content directly to users.", "tag_direct_mail": "Direct Mail", "tag_production": "Production Design", "tag_access": "Access upon request", "prev": "← Previous", "next": "Next project →"}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "gate_text": "Esta sección está protegida con contraseña.", "gate_placeholder": "Contraseña", "gate_btn": "Entrar", "gate_error": "Contraseña incorrecta.", "notice": "Trabajo producido en Connaxis para RKD Group, y en Hogarth. Disponible bajo solicitud para oportunidades calificadas.", "section_rkd": "RKD Group — Connaxis", "section_hogarth": "Hogarth", "mgh_title": "Massachusetts General Hospital", "mgh_meta": "Correo directo · Diseño de producción · RKD Group", "mgh_p1": "Massachusetts General Hospital es una de las marcas de salud más grandes de Estados Unidos. El trabajo que se muestra abarca múltiples campañas de mailing producidas en Connaxis para RKD Group: donaciones anuales, grandes contribuyentes y captación de nuevos donantes.", "mgh_p2": "Mi rol está en la intersección entre diseño y producción. Trabajo en conjunto con directores de arte, directores creativos, redactores y equipos de cuentas para desarrollar los materiales de cada campaña hasta el último paso: la impresión.", "nl_title": "Newsletters", "nl_meta": "Impresión · Diseño de newsletters · RKD Group", "nl_p1": "El trabajo de newsletters sigue el mismo modelo de producción de RKD Group, con un poco más de espacio para el aporte creativo — en layout, jerarquía y balance visual — siempre dentro de los lineamientos de marca.", "dtv_title": "DirecTV", "dtv_meta": "Producción digital", "dtv_p1": "Materiales de campaña para DirecTV producidos en Hogarth — piezas digitales incluyendo templates de email, banners web, contenido para redes sociales y gráficas para pantalla. Cada formato tenía sus propias restricciones técnicas, lo que requería adaptar el sistema visual a múltiples tamaños, resoluciones y contextos. El objetivo era mantener la consistencia y traducir la misma campaña en un ecosistema digital variado. Las últimas piezas corresponden al Canal 100 — el canal exclusivo para suscriptores de DirecTV, utilizado para presentar contenido promocional y de entretenimiento directamente a los usuarios.", "tag_direct_mail": "Correo Directo", "tag_production": "Diseño de Producción", "tag_access": "Acceso bajo solicitud", "prev": "← Anterior", "next": "Siguiente proyecto →"} };
     function setLang(lang) {
       localStorage.setItem('lang', lang);
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
@@ -284,6 +295,32 @@
     }
     var savedLang = localStorage.getItem('lang') || 'en';
     setLang(savedLang);
+  
+    // Slideshow decodificador DirecTV - loop infinito
+    (function() {
+      var inner = document.getElementById('dtv-inner');
+      if (!inner) return;
+      // Clonar las imagenes para loop infinito
+      var imgs = inner.querySelectorAll('img');
+      var total = imgs.length;
+      imgs.forEach(function(img) {
+        inner.appendChild(img.cloneNode(true));
+      });
+      var current = 0;
+      setInterval(function() {
+        current++;
+        inner.style.transition = 'transform 0.6s cubic-bezier(0.4,0,0.2,1)';
+        inner.style.transform = 'translateX(-' + (current * 100) + '%)';
+        // Cuando llegamos al final de los originales, saltar silenciosamente al inicio
+        if (current >= total) {
+          setTimeout(function() {
+            inner.style.transition = 'none';
+            inner.style.transform = 'translateX(0)';
+            current = 0;
+          }, 650);
+        }
+      }, 2500);
+    })();
   </script>
 </body>
 </html>
