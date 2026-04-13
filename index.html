@@ -128,6 +128,11 @@
       background: rgba(255,255,255,0.25);
       animation: pulse 2s ease-in-out infinite;
     }
+    .lang-toggle-index { position:fixed; top:2rem; right:2rem; z-index:200; display:flex; align-items:center; gap:0.5rem; }
+    .lang-btn-index { font-family: 'Archivo', sans-serif; font-size:11px; font-weight:300; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.5); background:transparent; border:none; outline:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn-index.active { color:#ffffff; }
+    .lang-btn-index:hover { color:rgba(255,255,255,0.8); }
+    .lang-sep-index { font-size:11px; color:rgba(255,255,255,0.2); font-weight:300; }
     @keyframes pulse {
       0%, 100% { opacity: 0.2; transform: scale(1); }
       50% { opacity: 0.8; transform: scale(1.4); }
@@ -144,6 +149,11 @@
 </head>
 <body>
   <canvas id="c"></canvas>
+  <div class="lang-toggle-index">
+    <button class="lang-btn-index active" id="btn-en" onclick="setLang('en')">EN</button>
+    <span class="lang-sep-index">/</span>
+    <button class="lang-btn-index" id="btn-es" onclick="setLang('es')">ES</button>
+  </div>
   <div class="overlay-exit" id="overlay"></div>
 
   <div class="content">
@@ -151,9 +161,9 @@
       Luciana
       <em>Salomón</em>
     </h1>
-    <p class="tagline" id="tagline">Design &nbsp;·&nbsp; Illustration &nbsp;·&nbsp; Editorial</p>
+    <p class="tagline" id="tagline" data-i18n="tagline">Design &nbsp;·&nbsp; Illustration &nbsp;·&nbsp; Editorial</p>
     <div class="enter-wrap" id="enter-wrap">
-      <a href="portfolio.html" class="enter-btn" id="enter-btn">Enter</a>
+      <a href="portfolio.html" class="enter-btn" id="enter-btn" data-i18n="enter_btn">Enter</a>
     </div>
   </div>
 
@@ -268,6 +278,23 @@
       ov.classList.add('active');
       setTimeout(function() { window.location.href = 'portfolio.html'; }, 1100);
     });
+
+    // i18n
+    var translations = {
+      en: { tagline: 'Design &nbsp;·&nbsp; Illustration &nbsp;·&nbsp; Editorial', enter_btn: 'Enter' },
+      es: { tagline: 'Diseño &nbsp;·&nbsp; Ilustración &nbsp;·&nbsp; Editorial', enter_btn: 'Entrar' }
+    };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
   </script>
 </body>
 </html>

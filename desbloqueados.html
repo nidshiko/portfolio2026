@@ -67,6 +67,13 @@
     .mobile-menu.open { display:flex; }
     .mobile-menu a { font-family:'DM Serif Display',serif; font-size:32px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
     @media (max-width:600px) { .hamburger { display:flex; } .nav-links { display:none !important; } }
+    .lang-toggle { display:flex; align-items:center; gap:0.4rem; margin-left:2rem; }
+    .lang-btn { font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.1em; color:var(--text-tertiary); background:none; border:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn.active { color:var(--text); }
+    .lang-btn:hover { color:var(--text); }
+    .lang-sep { font-size:11px; color:var(--text-tertiary); font-weight:300; }
+    .mobile-close { position:absolute; top:2rem; right:2rem; font-size:24px; font-weight:300; background:none; border:none; color:var(--text); cursor:pointer; line-height:1; padding:0; }
+    @media (max-width:600px) { .lang-toggle { margin-left:1rem; } }
   </style>
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
@@ -84,20 +91,26 @@
     <img id="lb-img" src="" alt="">
   </div>
   <div class="mobile-menu" id="mobile-menu">
-    <a href="portfolio.html">Work</a>
-    <a href="about.html">About</a>
+    <button class="mobile-close" id="mobile-close">&times;</button>
+    <a href="portfolio.html" data-i18n="nav_work">Work</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
     <a href="cv.html">CV</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="port">
     <nav>
       <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
       <ul class="nav-links">
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html" data-i18n="nav_work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
         <li><a href="cv.html">CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -107,15 +120,15 @@
       <span class="tag">Packaging</span><span class="tag">Illustration</span><span class="tag">Identity</span>
     </div>
     <h1 class="project-title">Desbloqueados</h1>
-    <p class="project-intro">Desbloqueados (Unblocked) — a board game designed to challenge gender stereotypes in early childhood education.</p>
+    <p class="project-intro" data-i18n="intro">Desbloqueados (Unblocked) — a board game designed to challenge gender stereotypes in early childhood education.</p>
     <div class="hero-img" style="background:#F5C030;"><img src="img/desbloqueados_1.jpg" alt="Desbloqueados"></div>
     <div class="project-body">
       <div class="body-text">
-        <p>Desbloqueados was designed as a tool for ESI (Comprehensive Sexual Education) for preschool-age children. The brief was to create a game that actively challenges gender stereotypes — not by avoiding them, but by dismantling them through play.</p>
-        <p>The system is built from modular pieces combining geometric and irregular shapes. Most are double-sided, increasing the number of possible configurations. Some pieces include recognizable features — eyes, mouths, clothing — while others remain abstract. A third set is intentionally blank, paired with crayons, allowing children to create and define their own elements.</p>
-        <p>There are no fixed rules for assembly, only prompts. The goal is not to guide outcomes, but to remove constraints — making every combination equally valid.</p>
-        <p>The color palette is saturated and flat, designed to attract attention without suggesting meaning or hierarchy. The name Desbloqueados ("Unblocked") reflects this approach: opening possibilities rather than prescribing them.</p>
-        <p>The game was produced and tested in a real classroom setting. A preschool teacher introduced it to her students, and children engaged with it freely — extending the system by creating characters, narratives, and new rules of their own. That version — in use, reinterpreted, and slightly out of control — is the one that matters.</p>
+        <p data-i18n="p1">Desbloqueados was designed as a tool for ESI (Comprehensive Sexual Education) for preschool-age children. The brief was to create a game that actively challenges gender stereotypes — not by avoiding them, but by dismantling them through play.</p>
+        <p data-i18n="p2">The system is built from modular pieces combining geometric and irregular shapes. Most are double-sided, increasing the number of possible configurations. Some pieces include recognizable features — eyes, mouths, clothing — while others remain abstract. A third set is intentionally blank, paired with crayons, allowing children to create and define their own elements.</p>
+        <p data-i18n="p3">There are no fixed rules for assembly, only prompts. The goal is not to guide outcomes, but to remove constraints — making every combination equally valid.</p>
+        <p data-i18n="p4">The color palette is saturated and flat, designed to attract attention without suggesting meaning or hierarchy. The name Desbloqueados ("Unblocked") reflects this approach: opening possibilities rather than prescribing them.</p>
+        <p data-i18n="p5">The game was produced and tested in a real classroom setting. A preschool teacher introduced it to her students, and children engaged with it freely — extending the system by creating characters, narratives, and new rules of their own. That version — in use, reinterpreted, and slightly out of control — is the one that matters.</p>
       </div>
       <div>
         <div class="detail-item"><p class="detail-label">Year</p><p class="detail-value">2023</p></div><div class="detail-item"><p class="detail-label">Context</p><p class="detail-value">FADU-UBA, Diseño y Estudios de Género</p></div><div class="detail-item"><p class="detail-label">Collaborator</p><p class="detail-value">Carolina Quiroga</p></div><div class="detail-item"><p class="detail-label">My role</p><p class="detail-value">Visual identity, packaging, color system, game design</p></div><div class="detail-item"><p class="detail-label">Tools</p><p class="detail-value">Illustrator, InDesign</p></div>
@@ -194,6 +207,27 @@
       el.classList.add('fade-observe');
       obs.observe(el);
     });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "intro": "Desbloqueados (Unblocked) — a board game designed to challenge gender stereotypes in early childhood education.", "p1": "Desbloqueados was designed as a tool for ESI (Comprehensive Sexual Education) for early childhood. The brief was to create a game that actively challenges gender stereotypes — not by avoiding them, but by dismantling them through play.", "p2": "The system is built from modular pieces combining geometric and irregular shapes. Most are double-sided, increasing the number of possible configurations. Some pieces include recognizable features — eyes, mouths, clothing — while others remain abstract. A blank set is also included, paired with crayons, so children can create their own.", "p3": "There are no fixed rules, only prompts. The goal is not to guide outcomes, but to remove constraints — making every combination equally valid.", "p4": "The color palette is saturated and flat, designed to attract attention without suggesting meaning or hierarchy. The name Desbloqueados (\"Unblocked\") reflects this approach: opening possibilities rather than prescribing them.", "p5": "The game was produced and tested in a real classroom. A preschool teacher introduced it to her students, and children engaged with it freely — extending the system with their own characters, narratives, and rules. That version, in real use and slightly out of control, is the real one."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "intro": "Desbloqueados — un juego de mesa diseñado para desafiar los estereotipos de género en la educación inicial.", "p1": "Desbloqueados fue diseñado como una herramienta de ESI (Educación Sexual Integral) para niños y niñas de nivel inicial. El brief era crear un juego que desafiara activamente los estereotipos de género — no evitándolos, sino desarmarlos a través del juego.", "p2": "El sistema está construido con piezas modulares que combinan formas geométricas e irregulares. La mayoría son dobles, lo que multiplica las configuraciones posibles. Algunas piezas tienen rasgos reconocibles — ojos, bocas, ropa — mientras otras son abstractas. También incluye piezas en blanco, acompañadas de crayones, para que los chicos creen sus propias piezas.", "p3": "No hay reglas fijas. El objetivo no es guiar el resultado, sino eliminar limitaciones, haciendo que cualquier combinación sea igualmente válida.", "p4": "La paleta es saturada y plana, diseñada para atraer la atención sin sugerir jerarquías. El nombre Desbloqueados refleja este enfoque: abrir posibilidades en lugar de prescribirlas.", "p5": "El juego fue producido y probado en un aula real. Una maestra de jardín lo introdujo con sus alumnos, y los chicos lo tomaron libremente — extendiendo el sistema con sus propios personajes, narrativas y reglas. Esa versión, en uso real y un poco fuera de control, es la verdadera."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
   </script>
 </body>
 </html>

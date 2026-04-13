@@ -37,6 +37,11 @@
     .submit-btn { margin-top:2rem; font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.15em; text-transform:uppercase; color:var(--text); background:transparent; border:0.5px solid var(--border); padding:14px 32px; cursor:pointer; transition:background 0.2s, border-color 0.2s; }
     .submit-btn:hover { background:var(--hover-bg); border-color:var(--text); }
     .success-msg { display:none; font-size:13px; font-weight:300; color:var(--text-secondary); margin-top:1.5rem; }
+    .lang-toggle { display:flex; align-items:center; gap:0.4rem; margin-left:2rem; }
+    .lang-btn { font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.1em; color:var(--text-tertiary); background:none; border:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn.active { color:var(--text); }
+    .lang-btn:hover { color:var(--text); }
+    .lang-sep { font-size:11px; color:var(--text-tertiary); font-weight:300; }
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:0; }
     .hamburger span { display:block; width:22px; height:1px; background:var(--text); transition:all 0.3s ease; }
     .hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
@@ -45,14 +50,15 @@
     .mobile-menu { display:none; position:fixed; inset:0; background:var(--bg); z-index:998; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; }
     .mobile-menu.open { display:flex; }
     .mobile-menu a { font-family:'DM Serif Display',serif; font-size:32px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
+    .mobile-close { position:absolute; top:2rem; right:2rem; font-size:24px; font-weight:300; background:none; border:none; color:var(--text); cursor:pointer; line-height:1; padding:0; }
     @media (max-width:600px) {
       .port { padding:0 1.5rem 4rem; }
       .contact-grid { grid-template-columns:1fr; gap:4rem; }
       .nav-links { display:none !important; }
       .hamburger { display:flex; }
+      .lang-toggle { margin-left:1rem; }
     }
   </style>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -64,20 +70,26 @@
 <body>
   <div id="curtain"></div>
   <div class="mobile-menu" id="mobile-menu">
-    <a href="portfolio.html">Work</a>
-    <a href="about.html">About</a>
+    <button class="mobile-close" id="mobile-close">&times;</button>
+    <a href="portfolio.html" data-i18n="nav_work">Work</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
     <a href="cv.html">CV</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="port">
     <nav>
       <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
       <ul class="nav-links">
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html" data-i18n="nav_work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
         <li><a href="cv.html">CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -85,10 +97,10 @@
 
     <div class="contact-grid">
       <div class="contact-info">
-        <h1>Let's work<br><em>together</em></h1>
+        <h1 data-i18n="contact_h1">Let's work<br><em>together</em></h1>
         <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#8bf8eae7e4e6e4e5e7fee8e2eae5eaedada8bdbfb0ece6eae2e7a5e8e4e6" class="contact-link">
-            salomonlucianaf&#64;gmail.com
+          <a href="mailto:salomonlucianaf@gmail.com" class="contact-link">
+            salomonlucianaf@gmail.com
             <span>Email</span>
           </a>
           <a href="https://linkedin.com/in/lucianasalomon" target="_blank" class="contact-link">
@@ -104,24 +116,24 @@
 
       <form id="contact-form" action="https://formspree.io/f/mvzdpldd" method="POST">
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name" data-i18n="label_name">Name</label>
           <input type="text" id="name" name="name" required>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email" data-i18n="label_email">Email</label>
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="message">Message</label>
+          <label for="message" data-i18n="label_message">Message</label>
           <textarea id="message" name="message" required></textarea>
         </div>
-        <button type="submit" class="submit-btn">Send message</button>
-        <p class="success-msg" id="success-msg">Message sent. I'll get back to you soon.</p>
+        <button type="submit" class="submit-btn" data-i18n="submit_btn">Send message</button>
+        <p class="success-msg" id="success-msg" data-i18n="success_msg">Message sent. I'll get back to you soon.</p>
       </form>
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     window.addEventListener('pageshow', function() {
       document.getElementById('curtain').classList.remove('cover');
       document.getElementById('curtain').style.opacity = '0';
@@ -138,7 +150,10 @@
         menu.classList.remove('open');
       });
     });
-    // Form submit
+    document.getElementById('mobile-close').addEventListener('click', function() {
+      ham.classList.remove('open');
+      menu.classList.remove('open');
+    });
     var form = document.getElementById('contact-form');
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -159,4 +174,22 @@
         var href = a.getAttribute('href');
         if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('#') || href.includes('#') || a.hasAttribute('download')) return;
         e.preventDefault();
-        document.getEle
+        document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
+      });
+    });
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "contact_h1": "Let's work<br><em>together</em>", "label_name": "Name", "label_email": "Email", "label_message": "Message", "submit_btn": "Send message", "success_msg": "Message sent. I'll get back to you soon."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "contact_h1": "Trabajemos<br><em>juntos</em>", "label_name": "Nombre", "label_email": "Email", "label_message": "Mensaje", "submit_btn": "Enviar mensaje", "success_msg": "Mensaje enviado. Te respondo pronto."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
+  </script>
+</body>
+</html>

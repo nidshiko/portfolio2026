@@ -65,6 +65,13 @@
     .mobile-menu.open { display:flex; }
     .mobile-menu a { font-family:'DM Serif Display',serif; font-size:32px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
     @media (max-width:600px) { .hamburger { display:flex; } .nav-links { display:none !important; } }
+    .lang-toggle { display:flex; align-items:center; gap:0.4rem; margin-left:2rem; }
+    .lang-btn { font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.1em; color:var(--text-tertiary); background:none; border:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn.active { color:var(--text); }
+    .lang-btn:hover { color:var(--text); }
+    .lang-sep { font-size:11px; color:var(--text-tertiary); font-weight:300; }
+    .mobile-close { position:absolute; top:2rem; right:2rem; font-size:24px; font-weight:300; background:none; border:none; color:var(--text); cursor:pointer; line-height:1; padding:0; }
+    @media (max-width:600px) { .lang-toggle { margin-left:1rem; } }
   </style>
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
@@ -82,20 +89,26 @@
     <img id="lb-img" src="" alt="">
   </div>
   <div class="mobile-menu" id="mobile-menu">
-    <a href="portfolio.html">Work</a>
-    <a href="about.html">About</a>
+    <button class="mobile-close" id="mobile-close">&times;</button>
+    <a href="portfolio.html" data-i18n="nav_work">Work</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
     <a href="cv.html">CV</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="port">
     <nav>
       <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
       <ul class="nav-links">
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html" data-i18n="nav_work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
         <li><a href="cv.html">CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -105,13 +118,13 @@
       <span class="tag">Graphic System</span><span class="tag">Illustration</span><span class="tag">Editorial</span>
     </div>
     <h1 class="project-title">Doce Hechizos</h1>
-    <p class="project-intro">A visual system exploring how illustration can function consistently across different formats and scales.</p>
+    <p class="project-intro" data-i18n="intro">A visual system exploring how illustration can function consistently across different formats and scales.</p>
     <div class="hero-img" style="background:#2D0A4E;"><img src="img/doce_1.jpg" alt="Doce Hechizos"></div>
     <div class="project-body">
       <div class="body-text">
-        <p>Doce Hechizos (Twelve Spells) is a visual system exploring how illustration can function consistently across different formats and scales.</p>
-        <p>The brief was open, but the challenge was concrete: to build a complete system from scratch. The result is a Halloween-inspired universe applied across a 2026 calendar, stationery, and masks — all connected through a shared visual language.</p>
-        <p>The calendar became the central piece. I've designed calendars professionally for years, always within pre-existing systems. This project was the first time I built one from the ground up — from illustration to grid to typography — allowing for a level of control and expression rarely possible in commercial work.</p>
+        <p data-i18n="p1">Doce Hechizos (Twelve Spells) is a visual system exploring how illustration can function consistently across different formats and scales.</p>
+        <p data-i18n="p2">The brief was open, but the challenge was concrete: to build a complete system from scratch. The result is a Halloween-inspired universe applied across a 2026 calendar, stationery, and masks — all connected through a shared visual language.</p>
+        <p data-i18n="p3">The calendar became the central piece. I've designed calendars professionally for years, always within pre-existing systems. This project was the first time I built one from the ground up — from illustration to grid to typography — allowing for a level of control and expression rarely possible in commercial work.</p>
       </div>
       <div>
         <div class="detail-item"><p class="detail-label">Year</p><p class="detail-value">2025</p></div><div class="detail-item"><p class="detail-label">Context</p><p class="detail-value">Mirada Gráfica, UBA</p></div><div class="detail-item"><p class="detail-label">Format</p><p class="detail-value">Calendar, notebook, bookmarks, masks</p></div><div class="detail-item"><p class="detail-label">My role</p><p class="detail-value">Illustration, graphic system, design</p></div>
@@ -189,6 +202,27 @@
       el.classList.add('fade-observe');
       obs.observe(el);
     });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "intro": "A visual system exploring how illustration can function consistently across different formats and scales.", "p1": "Doce Hechizos (Twelve Spells) is a visual system exploring how illustration can function consistently across different formats and scales.", "p2": "The brief was open, but the challenge was concrete: to build a complete system from scratch. The result is a Halloween-inspired universe applied across a 2026 calendar, stationery, and masks.", "p3": "The calendar became the central piece. I've designed calendars professionally for years, always within pre-existing systems. This project was the first time I built one from the ground up — from illustration to grid to typography — with much more creative freedom than commercial work usually allows."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "intro": "Un sistema visual que explora cómo la ilustración puede funcionar de manera consistente en distintos formatos y escalas.", "p1": "Doce Hechizos es un sistema visual que explora cómo la ilustración puede funcionar de manera consistente en distintos formatos y escalas.", "p2": "El brief era libre, pero el desafío era concreto: construir un sistema completo desde cero. El resultado es un universo de Halloween aplicado en un calendario 2026, papelería y máscaras.", "p3": "El calendario fue la pieza central. Diseñé calendarios profesionalmente durante años, siempre dentro de sistemas preexistentes. Este proyecto fue la primera vez que construí uno desde cero — desde la ilustración hasta la grilla y la tipografía — con mucha más libertad creativa de la que suele haber en el trabajo comercial."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
   </script>
 </body>
 </html>

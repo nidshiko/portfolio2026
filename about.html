@@ -60,6 +60,13 @@
       .nav-links { display:none !important; }
       .hamburger { display:flex; }
     }
+    .lang-toggle { display:flex; align-items:center; gap:0.4rem; margin-left:2rem; }
+    .lang-btn { font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.1em; color:var(--text-tertiary); cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn.active { color:var(--text); }
+    .lang-btn:hover { color:var(--text); }
+    .lang-sep { font-size:11px; color:var(--text-tertiary); font-weight:300; }
+    .mobile-close { position:absolute; top:2rem; right:2rem; font-size:24px; font-weight:300; background:none; border:none; color:var(--text); cursor:pointer; line-height:1; padding:0; }
+    @media (max-width:600px) { .lang-toggle { margin-left:1rem; } }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
@@ -73,20 +80,26 @@
 <body>
   <div id="curtain"></div>
   <div class="mobile-menu" id="mobile-menu">
-    <a href="portfolio.html">Work</a>
-    <a href="about.html">About</a>
+    <button class="mobile-close" id="mobile-close">&times;</button>
+    <a href="portfolio.html" data-i18n="nav_work">Work</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
     <a href="cv.html">CV</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="port">
     <nav>
       <a href="portfolio.html" class="nav-name">Luciana Salomón</a>
       <ul class="nav-links">
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html" data-i18n="nav_work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
         <li><a href="cv.html">CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
+      <div class="lang-toggle">
+        <span class="lang-btn active" id="btn-en" onclick="setLang('en')" style="cursor:pointer">EN</span>
+        <span class="lang-sep">/</span>
+        <span class="lang-btn" id="btn-es" onclick="setLang('es')" style="cursor:pointer">ES</span>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -99,19 +112,19 @@
         </div>
       </div>
       <div class="content-col">
-        <p class="section-label">About</p>
-        <p class="bio-text">I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from FADU-UBA and have spent the past years working at a design agency — building systems, solving complex problems at scale, and making sure every detail holds up.</p>
-        <p class="bio-text">I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.</p>
-        <p class="bio-text">My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects.</p>
+        <p class="section-label" data-i18n="about_label">About</p>
+        <p class="bio-text" data-i18n="bio1">I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from FADU-UBA and have spent the past years working at a design agency — building systems, solving complex problems at scale, and making sure every detail holds up.</p>
+        <p class="bio-text" data-i18n="bio2">I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.</p>
+        <p class="bio-text" data-i18n="bio3">My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects.</p>
         <div class="contact-section">
           <a href="/cdn-cgi/l/email-protection#2b584a4744464445475e48424a454a4d6b4c464a424705484446" class="contact-link">salomonlucianaf&#64;gmail.com</a>
           <a href="https://linkedin.com/in/lucianasalomon" target="_blank" class="contact-link">LinkedIn</a>
         </div>
         <div class="skills-section">
-          <p class="section-label">Capabilities</p>
+          <p class="section-label" data-i18n="cap_label">Capabilities</p>
           <div class="skills-grid">
             <div class="skill-group">
-              <h3>Design</h3>
+              <h3 data-i18n="skill_design">Design</h3>
               <ul>
                 <li>Editorial design</li>
                 <li>Book design</li>
@@ -121,7 +134,7 @@
               </ul>
             </div>
             <div class="skill-group">
-              <h3>Illustration</h3>
+              <h3 data-i18n="skill_illustration">Illustration</h3>
               <ul>
                 <li>Analog illustration</li>
                 <li>Digital illustration</li>
@@ -129,7 +142,7 @@
               </ul>
             </div>
             <div class="skill-group">
-              <h3>Tools</h3>
+              <h3 data-i18n="skill_tools">Tools</h3>
               <ul>
                 <li>InDesign</li>
                 <li>Illustrator</li>
@@ -146,8 +159,62 @@
   </div>
 
   <script>
-    var ham = document.getElementById('hamburger');
-    var menu = document.getElementById('mobile-menu');
+    var ham = document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "about_label": "About", "cap_label": "Capabilities", "skill_design": "Design", "skill_illustration": "Illustration", "skill_tools": "Tools", "bio1": "I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from the University of Buenos Aires and have spent the past years working at design agencies — building systems, solving complex problems, and making sure every detail is taken care of.", "bio2": "I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.", "bio3": "My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "about_label": "Sobre mí", "cap_label": "Capacidades", "skill_design": "Diseño", "skill_illustration": "Ilustración", "skill_tools": "Herramientas", "bio1": "Diseñadora gráfica e ilustradora, vivo en Buenos Aires. Soy graduada de FADU-UBA y pasé los últimos años trabajando en agencias de diseño: construyo sistemas, resuelvo problemas complejos y me aseguro de cuidar todos los detalles.", "bio2": "Para mí el diseño es una forma de comunicación. Ya sea para un cliente o un proyecto personal, el objetivo es siempre el mismo: que cada decisión tenga un por qué.", "bio3": "Mi trabajo personal existe porque lo necesito. No para llenar un portfolio, sino porque me gusta explorar, pensar y expandirme. Es cuando pruebo mis ideas, me desafío y dejo que las cosas sean menos controladas. De alguna manera, todo termina conectado."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
+  </script>
+</body>
+</html>ById('hamburger');
+    var menu = document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "about_label": "About", "cap_label": "Capabilities", "skill_design": "Design", "skill_illustration": "Illustration", "skill_tools": "Tools", "bio1": "I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from the University of Buenos Aires and have spent the past years working at design agencies — building systems, solving complex problems, and making sure every detail is taken care of.", "bio2": "I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.", "bio3": "My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "about_label": "Sobre mí", "cap_label": "Capacidades", "skill_design": "Diseño", "skill_illustration": "Ilustración", "skill_tools": "Herramientas", "bio1": "Diseñadora gráfica e ilustradora, vivo en Buenos Aires. Soy graduada de FADU-UBA y pasé los últimos años trabajando en agencias de diseño: construyo sistemas, resuelvo problemas complejos y me aseguro de cuidar todos los detalles.", "bio2": "Para mí el diseño es una forma de comunicación. Ya sea para un cliente o un proyecto personal, el objetivo es siempre el mismo: que cada decisión tenga un por qué.", "bio3": "Mi trabajo personal existe porque lo necesito. No para llenar un portfolio, sino porque me gusta explorar, pensar y expandirme. Es cuando pruebo mis ideas, me desafío y dejo que las cosas sean menos controladas. De alguna manera, todo termina conectado."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
+  </script>
+</body>
+</html>ById('mobile-menu');
     ham.addEventListener('click', function() {
       ham.classList.toggle('open');
       menu.classList.toggle('open');
@@ -158,9 +225,64 @@
         menu.classList.remove('open');
       });
     });
+    // Reset curtain on back button
     window.addEventListener('pageshow', function(e) {
-      document.getElementById('curtain').classList.remove('cover');
-      document.getElementById('curtain').style.opacity = '0';
+      document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "about_label": "About", "cap_label": "Capabilities", "skill_design": "Design", "skill_illustration": "Illustration", "skill_tools": "Tools", "bio1": "I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from the University of Buenos Aires and have spent the past years working at design agencies — building systems, solving complex problems, and making sure every detail is taken care of.", "bio2": "I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.", "bio3": "My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "about_label": "Sobre mí", "cap_label": "Capacidades", "skill_design": "Diseño", "skill_illustration": "Ilustración", "skill_tools": "Herramientas", "bio1": "Diseñadora gráfica e ilustradora, vivo en Buenos Aires. Soy graduada de FADU-UBA y pasé los últimos años trabajando en agencias de diseño: construyo sistemas, resuelvo problemas complejos y me aseguro de cuidar todos los detalles.", "bio2": "Para mí el diseño es una forma de comunicación. Ya sea para un cliente o un proyecto personal, el objetivo es siempre el mismo: que cada decisión tenga un por qué.", "bio3": "Mi trabajo personal existe porque lo necesito. No para llenar un portfolio, sino porque me gusta explorar, pensar y expandirme. Es cuando pruebo mis ideas, me desafío y dejo que las cosas sean menos controladas. De alguna manera, todo termina conectado."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
+  </script>
+</body>
+</html>ById('curtain').classList.remove('cover');
+      document.getElementById('curtain').classList.add('cover');
+        setTimeout(function() { window.location.href = href; }, 300);
+      });
+    });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "about_label": "About", "cap_label": "Capabilities", "skill_design": "Design", "skill_illustration": "Illustration", "skill_tools": "Tools", "bio1": "I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from the University of Buenos Aires and have spent the past years working at design agencies — building systems, solving complex problems, and making sure every detail is taken care of.", "bio2": "I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.", "bio3": "My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "about_label": "Sobre mí", "cap_label": "Capacidades", "skill_design": "Diseño", "skill_illustration": "Ilustración", "skill_tools": "Herramientas", "bio1": "Diseñadora gráfica e ilustradora, vivo en Buenos Aires. Soy graduada de FADU-UBA y pasé los últimos años trabajando en agencias de diseño: construyo sistemas, resuelvo problemas complejos y me aseguro de cuidar todos los detalles.", "bio2": "Para mí el diseño es una forma de comunicación. Ya sea para un cliente o un proyecto personal, el objetivo es siempre el mismo: que cada decisión tenga un por qué.", "bio3": "Mi trabajo personal existe porque lo necesito. No para llenar un portfolio, sino porque me gusta explorar, pensar y expandirme. Es cuando pruebo mis ideas, me desafío y dejo que las cosas sean menos controladas. De alguna manera, todo termina conectado."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
+  </script>
+</body>
+</html>ById('curtain').style.opacity = '0';
     });
     document.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', function(e) {
@@ -171,6 +293,27 @@
         setTimeout(function() { window.location.href = href; }, 300);
       });
     });
+  </script>
+  <script>
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    }
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "about_label": "About", "cap_label": "Capabilities", "skill_design": "Design", "skill_illustration": "Illustration", "skill_tools": "Tools", "bio1": "I'm a Graphic Designer and illustrator based in Buenos Aires. I graduated from the University of Buenos Aires and have spent the past years working at design agencies — building systems, solving complex problems, and making sure every detail is taken care of.", "bio2": "I approach design as a form of communication. Whether it's a client campaign or a self-published zine about pole sport, the goal is the same: clarity, precision, and intent.", "bio3": "My personal work — zines, illustrated books, fanzines — exists because I need it to. Not to fill a portfolio, but to explore, to think, and to expand. It's where I test ideas, take risks, and let things be less controlled. Somehow, it all connects."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "about_label": "Sobre mí", "cap_label": "Capacidades", "skill_design": "Diseño", "skill_illustration": "Ilustración", "skill_tools": "Herramientas", "bio1": "Diseñadora gráfica e ilustradora, vivo en Buenos Aires. Soy graduada de FADU-UBA y pasé los últimos años trabajando en agencias de diseño: construyo sistemas, resuelvo problemas complejos y me aseguro de cuidar todos los detalles.", "bio2": "Para mí el diseño es una forma de comunicación. Ya sea para un cliente o un proyecto personal, el objetivo es siempre el mismo: que cada decisión tenga un por qué.", "bio3": "Mi trabajo personal existe porque lo necesito. No para llenar un portfolio, sino porque me gusta explorar, pensar y expandirme. Es cuando pruebo mis ideas, me desafío y dejo que las cosas sean menos controladas. De alguna manera, todo termina conectado."} };
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+    }
+    var savedLang = localStorage.getItem('lang') || 'en';
+    setLang(savedLang);
   </script>
 </body>
 </html>
