@@ -73,7 +73,7 @@
     .mobile-menu a { font-family:'DM Serif Display',serif; font-size:32px; letter-spacing:-0.02em; text-decoration:none; color:var(--text); }
     @media (max-width:600px) { .hamburger { display:flex; } .nav-links { display:none !important; } }
     .lang-toggle { display:flex; align-items:center; gap:0.4rem; margin-left:2rem; }
-    .lang-btn { font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.1em; color:var(--text-tertiary); background:none; border:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn { font-family:'Archivo',sans-serif; font-size:11px; font-weight:300; letter-spacing:0.1em; color:var(--text-tertiary); background:none; border:none; outline:none; cursor:pointer; padding:0; transition:color 0.2s; }
     .lang-btn.active { color:var(--text); }
     .lang-btn:hover { color:var(--text); }
     .lang-sep { font-size:11px; color:var(--text-tertiary); font-weight:300; }
@@ -112,9 +112,9 @@
         <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
       <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-btn active" id="btn-en" onclick="setLang('en')" style="cursor:pointer">EN</span>
         <span class="lang-sep">/</span>
-        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+        <span class="lang-btn" id="btn-es" onclick="setLang('es')" style="cursor:pointer">ES</span>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -123,30 +123,30 @@
 
     <div class="project-meta">
       <span class="project-num">06</span>
-      <span class="tag">Direct Mail</span>
-      <span class="tag">Production Design</span>
+      <span class="tag" data-i18n="tag_direct_mail">Direct Mail</span>
+      <span class="tag" data-i18n="tag_production">Production Design</span>
       <span class="tag tag-private">Access upon request</span>
     </div>
     <h1 class="project-title">Selected Client Work</h1>
     <p class="project-intro" data-i18n="intro">Production design for direct mail and digital campaigns. U.S. and regional clients, high-volume output, print-ready and digital delivery.</p>
 
     <div class="gate" id="gate">
-      <p>This section is password protected.</p>
+      <p data-i18n="gate_text">This section is password protected.</p>
       <div class="gate-row">
-        <input type="password" id="pwd-input" placeholder="Password">
-        <button id="pwd-btn">Enter</button>
+        <input type="password" id="pwd-input" placeholder="Password" data-i18n-placeholder="gate_placeholder">
+        <button id="pwd-btn" data-i18n="gate_btn">Enter</button>
       </div>
-      <p id="pwd-error">Incorrect password.</p>
+      <p id="pwd-error" data-i18n="gate_error">Incorrect password.</p>
     </div>
 
     <div id="content">
-      <p class="notice">Work produced at Connaxis for RKD Group, and at Hogarth. Available upon request for qualified opportunities.</p>
+      <p class="notice" data-i18n="notice">Work produced at Connaxis for RKD Group, and at Hogarth. Available upon request for qualified opportunities.</p>
 
-      <p class="section-label">RKD Group — Connaxis</p>
+      <p class="section-label" data-i18n="section_rkd">RKD Group — Connaxis</p>
 
       <div class="campaign">
-        <h2 class="campaign-title">Massachusetts General Hospital</h2>
-        <p class="campaign-meta">Direct mail · Production Design · RKD Group</p>
+        <h2 class="campaign-title" data-i18n="mgh_title">Massachusetts General Hospital</h2>
+        <p class="campaign-meta" data-i18n="mgh_meta">Direct mail · Production Design · RKD Group</p>
         <p class="campaign-desc" data-i18n="mgh_p1">Massachusetts General Hospital is one of the most established healthcare brands in the United States. The work shown here spans multiple direct mail campaigns produced at Connaxis for RKD Group, including annual giving, major gifts, and acquisition packages.<br><br>My role operates at the intersection of design and production, collaborating closely with art directors, creative directors, copywriters, and account teams to develop campaign materials and carry them through to print. The focus is on translating creative into production-ready systems — managing art edits, ensuring spec compliance, and overseeing prepress and final delivery. The work demands precision at scale, where consistency and accuracy are critical across high-volume outputs.</p>
         <div class="grid">
           <img src="img/MGH_1.jpg" alt="" class="full">
@@ -157,8 +157,8 @@
       </div>
 
       <div class="campaign">
-        <h2 class="campaign-title">Newsletters</h2>
-        <p class="campaign-meta">Print · Newsletter design · RKD Group</p>
+        <h2 class="campaign-title" data-i18n="nl_title">Newsletters</h2>
+        <p class="campaign-meta" data-i18n="nl_meta">Print · Newsletter design · RKD Group</p>
         <p class="campaign-desc" data-i18n="nl_p1">Newsletter work follows the same production model developed for RKD Group, with slightly more room for creative input — particularly in layout, hierarchy, and visual balance — while still operating within established brand frameworks.</p>
         <div class="grid">
           <img src="img/NL_1.jpg" alt="" class="full">
@@ -167,11 +167,11 @@
         </div>
       </div>
 
-      <p class="section-label">Hogarth</p>
+      <p class="section-label" data-i18n="section_hogarth">Hogarth</p>
 
       <div class="campaign">
-        <h2 class="campaign-title">DirecTV</h2>
-        <p class="campaign-meta">Digital production</p>
+        <h2 class="campaign-title" data-i18n="dtv_title">DirecTV</h2>
+        <p class="campaign-meta" data-i18n="dtv_meta">Digital production</p>
         <p class="campaign-desc" data-i18n="dtv_p1">DirecTV campaign materials produced at Hogarth — digital-first assets including email templates, web banners, social media content, and on-screen graphics for set-top box interfaces. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions, and contexts. The focus was on maintaining consistency and clarity while translating the same campaign across a fragmented digital ecosystem.</p>
         <div class="grid">
           <img src="img/dtv_1.jpg" alt="" class="full">
@@ -181,7 +181,7 @@
       </div>
 
       <div class="project-nav">
-      <a href="centauro.html">← Previous</a>
+      <a href="centauro.html" data-i18n="prev">← Previous</a>
       <span></span>
     </div>
     </div>
@@ -270,7 +270,7 @@
         document.getElementById('mobile-menu').classList.remove('open');
       });
     }
-    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "intro": "Production design for direct mail and digital campaigns. U.S. and regional clients, high-volume output.", "mgh_p1": "Massachusetts General Hospital is one of the largest healthcare brands in the United States. The work shown spans multiple mailing campaigns produced at Connaxis for RKD Group: annual giving, major donors and new donor acquisition.", "mgh_p2": "My role sits at the intersection of design and production. I work closely with art directors, creative directors, copywriters and account teams to develop campaign materials through to the final step: print.", "nl_p1": "Newsletter work follows the same production model as RKD Group, with slightly more room for creative input — particularly in layout, hierarchy and visual balance — while staying within established brand frameworks.", "dtv_p1": "DirecTV campaign materials produced at Hogarth — digital assets including email templates, web banners, social media content and graphics for set-top box interfaces. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions and contexts. The goal was to maintain consistency while translating the same campaign across a varied digital ecosystem."}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "intro": "Diseño de producción para campañas de mailing y digital. Clientes de EE.UU. y la región, producción de alto volumen.", "mgh_p1": "Massachusetts General Hospital es una de las marcas de salud más grandes de Estados Unidos. El trabajo que se muestra abarca múltiples campañas de mailing producidas en Connaxis para RKD Group: donaciones anuales, grandes contribuyentes y captación de nuevos donantes.", "mgh_p2": "Mi rol está en la intersección entre diseño y producción. Trabajo en conjunto con directores de arte, directores creativos, redactores y equipos de cuentas para desarrollar los materiales de cada campaña hasta el último paso: la impresión.", "nl_p1": "El trabajo de newsletters sigue el mismo modelo de producción de RKD Group, con un poco más de espacio para el aporte creativo — en layout, jerarquía y balance visual — siempre dentro de los lineamientos de marca.", "dtv_p1": "Materiales de campaña para DirecTV producidos en Hogarth — piezas digitales incluyendo templates de email, banners web, contenido para redes sociales y gráficas para los canales del decodificador. Cada formato tenía sus propias restricciones técnicas, lo que requería adaptar el sistema visual a múltiples tamaños, resoluciones y contextos. El objetivo era mantener la consistencia y traducir la misma campaña en un ecosistema digital variado."} };
+    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "gate_text": "This section is password protected.", "gate_placeholder": "Password", "gate_btn": "Enter", "gate_error": "Incorrect password.", "notice": "Work produced at Connaxis for RKD Group, and at Hogarth. Available upon request for qualified opportunities.", "section_rkd": "RKD Group — Connaxis", "section_hogarth": "Hogarth", "mgh_title": "Massachusetts General Hospital", "mgh_meta": "Direct mail · Production Design · RKD Group", "mgh_p1": "Massachusetts General Hospital is one of the largest healthcare brands in the United States. The work shown spans multiple mailing campaigns produced at Connaxis for RKD Group: annual giving, major donors and new donor acquisition.", "mgh_p2": "My role sits at the intersection of design and production. I work closely with art directors, creative directors, copywriters and account teams to develop campaign materials through to the final step: print.", "nl_title": "Newsletters", "nl_meta": "Print · Newsletter design · RKD Group", "nl_p1": "Newsletter work follows the same production model as RKD Group, with slightly more room for creative input — particularly in layout, hierarchy and visual balance — while staying within established brand frameworks.", "dtv_title": "DirecTV", "dtv_meta": "Digital production", "dtv_p1": "DirecTV campaign materials produced at Hogarth — digital assets including email templates, web banners, social media content and graphics for set-top box interfaces. Each format came with its own technical constraints, requiring the visual system to be adapted across multiple sizes, resolutions and contexts. The goal was to maintain consistency while translating the same campaign across a varied digital ecosystem.", "tag_direct_mail": "Direct Mail", "tag_production": "Production Design", "tag_access": "Access upon request", "prev": "← Previous", "next": "Next project →"}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "gate_text": "Esta sección está protegida con contraseña.", "gate_placeholder": "Contraseña", "gate_btn": "Entrar", "gate_error": "Contraseña incorrecta.", "notice": "Trabajo producido en Connaxis para RKD Group, y en Hogarth. Disponible bajo solicitud para oportunidades calificadas.", "section_rkd": "RKD Group — Connaxis", "section_hogarth": "Hogarth", "mgh_title": "Massachusetts General Hospital", "mgh_meta": "Correo directo · Diseño de producción · RKD Group", "mgh_p1": "Massachusetts General Hospital es una de las marcas de salud más grandes de Estados Unidos. El trabajo que se muestra abarca múltiples campañas de mailing producidas en Connaxis para RKD Group: donaciones anuales, grandes contribuyentes y captación de nuevos donantes.", "mgh_p2": "Mi rol está en la intersección entre diseño y producción. Trabajo en conjunto con directores de arte, directores creativos, redactores y equipos de cuentas para desarrollar los materiales de cada campaña hasta el último paso: la impresión.", "nl_title": "Newsletters", "nl_meta": "Impresión · Diseño de newsletters · RKD Group", "nl_p1": "El trabajo de newsletters sigue el mismo modelo de producción de RKD Group, con un poco más de espacio para el aporte creativo — en layout, jerarquía y balance visual — siempre dentro de los lineamientos de marca.", "dtv_title": "DirecTV", "dtv_meta": "Producción digital", "dtv_p1": "Materiales de campaña para DirecTV producidos en Hogarth — piezas digitales incluyendo templates de email, banners web, contenido para redes sociales y gráficas para los canales del decodificador. Cada formato tenía sus propias restricciones técnicas, lo que requería adaptar el sistema visual a múltiples tamaños, resoluciones y contextos. El objetivo era mantener la consistencia y traducir la misma campaña en un ecosistema digital variado.", "tag_direct_mail": "Correo Directo", "tag_production": "Diseño de Producción", "tag_access": "Acceso bajo solicitud", "prev": "← Anterior", "next": "Siguiente proyecto →"} };
     function setLang(lang) {
       localStorage.setItem('lang', lang);
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
@@ -279,6 +279,8 @@
         var key = el.getAttribute('data-i18n');
         if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
       });
+      var pwdInput = document.getElementById('pwd-input');
+      if (pwdInput) pwdInput.placeholder = translations[lang]['gate_placeholder'] || 'Password';
     }
     var savedLang = localStorage.getItem('lang') || 'en';
     setLang(savedLang);
