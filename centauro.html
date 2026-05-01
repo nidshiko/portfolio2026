@@ -27,8 +27,6 @@
     .nav-links { display:flex; gap:2.5rem; list-style:none; }
     .nav-links a { font-size:11px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
     .nav-links a:hover { color:var(--text); }
-    .back-link { font-size:12px; font-weight:300; color:var(--text-tertiary); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; }
-    .back-link:hover { color:var(--text); }
     .project-meta { display:flex; gap:1rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
     .project-num { font-size:11px; font-weight:300; color:var(--text-tertiary); letter-spacing:0.1em; }
     .tag { font-size:10px; font-weight:300; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-tertiary); border:0.5px solid var(--border); padding:3px 8px; border-radius:2px; }
@@ -73,7 +71,7 @@
     .mobile-close { position:absolute; top:2rem; right:2rem; font-size:24px; font-weight:300; background:none; border:none; color:var(--text); cursor:pointer; line-height:1; padding:0; }
     @media (max-width:600px) { .lang-toggle { margin-left:1rem; } }
   </style>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM398XTRWW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -115,7 +113,9 @@
     </nav>
     <div class="project-meta">
       <span class="project-num">05</span>
-      <span class="tag" data-i18n="tag_book_design">Book Design</span><span class="tag" data-i18n="tag_illustration">Illustration</span><span class="tag" data-i18n="tag_print">Print</span>
+      <span class="tag" data-i18n="tag_book">Book Design</span>
+      <span class="tag" data-i18n="tag_illustration">Illustration</span>
+      <span class="tag" data-i18n="tag_print">Print</span>
     </div>
     <h1 class="project-title">El Centauro</h1>
     <p class="project-intro" data-i18n="intro">Book design and original illustration for a 19th-century prose poem. Three hand-bound copies, exhibited at Museo de la Cárcova, Buenos Aires.</p>
@@ -124,15 +124,23 @@
       <div class="body-text">
         <p data-i18n="p1">El Centauro (The Centaur) is a prose poem by the French Romantic writer Maurice de Guérin — a mythological meditation on nature, belonging, and the body as both human and animal. The brief was to design an edition of the text that felt as elemental as the writing itself.</p>
         <p data-i18n="p2">The book is built on a restrained typographic system — generous white space, classical references, and a glossary of mythological figures — giving the text room to unfold without interference.</p>
-        <p data-i18n="p3">Something in the text felt personal — the centaur, old and still, speaking from a mountain, trying to describe what it once meant to be young, moving, alive. That tension informed the tone of the edition.</p>
         <p data-i18n="p4">Three hand-bound copies were printed and exhibited at Museo de la Cárcova.</p>
       </div>
       <div>
-        <div class="detail-item"><p class="detail-label" data-i18n="label_year">Year</p><p class="detail-value">2025</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_context">Context</p><p class="detail-value" data-i18n="detail_context">Diplomatura en Artes del Libro, UNA</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_format">Format</p><p class="detail-value" data-i18n="detail_format">Hard cover with illustrated dust jacket</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_print">Print</p><p class="detail-value" data-i18n="detail_print">Dual Color, Buenos Aires</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_postcards">Postcards</p><p class="detail-value" data-i18n="detail_postcards">Fine Art giclée, FineArt Quilmes — Canson Platinum Rag 310g</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_binding">Binding</p><p class="detail-value" data-i18n="detail_binding">Vanessa Ramos, Mar del Plata</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_translation">Translation</p><p class="detail-value" data-i18n="detail_translation">Jorge Esquinca (La Colmena, UAEM, 2011)</p></div><div class="detail-item"><p class="detail-label" data-i18n="label_my_role">My role</p><p class="detail-value" data-i18n="detail_role">Design, illustration, typesetting, prepress, production</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_year">Year</p><p class="detail-value">2025</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_context">Context</p><p class="detail-value" data-i18n="detail_context">Diplomatura en Artes del Libro, UNA</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_format">Format</p><p class="detail-value" data-i18n="detail_format">Hard cover with illustrated dust jacket</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_print">Print</p><p class="detail-value">Dual Color, Buenos Aires</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_postcards">Postcards</p><p class="detail-value" data-i18n="detail_postcards">Fine Art giclée, FineArt Quilmes — Canson Platinum Rag 310g</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_binding">Binding</p><p class="detail-value">Vanessa Ramos, Mar del Plata</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_translation">Translation</p><p class="detail-value">Jorge Esquinca (La Colmena, UAEM, 2011)</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_my_role">My role</p><p class="detail-value" data-i18n="detail_role">Design, illustration, typesetting, prepress, production</p></div>
+        <div class="detail-item"><p class="detail-label" data-i18n="label_photography">Photography</p><p class="detail-value" data-i18n="detail_photography">Teaching team, Diplomatura en Artes del Libro, UNA</p></div>
       </div>
     </div>
     <div class="grid">
-      <img src="img/centauro_2.jpg" alt="" class="full">
+      <img src="img/centauro_2.jpg" alt="">
+      <img src="img/centauro_8.jpg" alt="">
       <img src="img/centauro_6.gif" alt="" class="full">
       <img src="img/centauro_3.jpg" alt="">
       <img src="img/centauro_7.jpg" alt="">
@@ -158,6 +166,14 @@
       ham.addEventListener('click', function() {
         ham.classList.toggle('open');
         menu.classList.toggle('open');
+      });
+    }
+    // Mobile close button
+    var closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobile-menu').classList.remove('open');
       });
     }
     // Transitions
@@ -202,14 +218,42 @@
     });
   </script>
   <script>
-    var closeBtn = document.getElementById('mobile-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        document.getElementById('hamburger').classList.remove('open');
-        document.getElementById('mobile-menu').classList.remove('open');
-      });
-    }
-    var translations = { en: {"nav_work": "Work", "nav_about": "About", "nav_contact": "Contact", "label_year": "Year", "label_context": "Context", "label_format": "Format", "label_print": "Print", "label_binding": "Binding", "label_translation": "Translation", "label_my_role": "My role", "label_tools": "Tools", "label_collaborator": "Collaborator", "label_team": "Team", "label_print_run": "Print run", "label_postcards": "Postcards", "prev": "← Previous", "next": "Next project →", "intro": "Book design and original illustration for a 19th-century prose poem. Three hand-bound copies, exhibited at Museo de la Cárcova, Buenos Aires.", "p1": "El Centauro is a prose poem by the French Romantic writer Maurice de Guérin — a mythological meditation on nature, belonging, and the body as both human and animal. The brief was to design an edition that felt as elemental as the writing itself.", "p2": "The book is built on a defined typographic system — generous white space, classical references, and a glossary of mythological figures — giving the text room to unfold without interference.", "p3": "Something in the text felt personal — the centaur, old and still, speaking from a mountain, trying to describe what it once meant to be young, moving, alive. That tension runs through the entire edition.", "p4": "Three hand-bound copies, printed and exhibited at Museo de la Cárcova.", "detail_context": "Diplomatura en Artes del Libro, UNA", "detail_format": "Hard cover with illustrated dust jacket", "detail_print": "Dual Color, Buenos Aires", "detail_postcards": "Fine Art giclée, FineArt Quilmes — Canson Platinum Rag 310g", "detail_binding": "Vanessa Ramos, Mar del Plata", "detail_translation": "Jorge Esquinca (La Colmena, UAEM, 2011)", "detail_role": "Design, illustration, typesetting, prepress, production"}, es: {"nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto", "label_year": "Año", "label_context": "Contexto", "label_format": "Formato", "label_print": "Impresión", "label_binding": "Encuadernación", "label_translation": "Traducción", "label_my_role": "Mi rol", "label_tools": "Herramientas", "label_collaborator": "Colaboradora", "label_team": "Equipo", "label_print_run": "Tirada", "label_postcards": "Postales", "prev": "← Anterior", "next": "Siguiente proyecto →", "intro": "Diseño editorial e ilustración original para un poema en prosa del siglo XIX. Tres copias encuadernadas a mano, exhibidas en el Museo de la Cárcova, Buenos Aires.", "p1": "El Centauro es un poema en prosa del escritor romántico francés Maurice de Guérin — una meditación mitológica sobre la naturaleza, la pertenencia y el cuerpo como algo humano y animal. El brief era diseñar una edición que se sintiera tan elemental como el texto mismo.", "p2": "El libro está construido sobre un sistema tipográfico definido — espacios blancos generosos, referencias clásicas y un glosario de figuras mitológicas — dándole al texto espacio para desplegarse sin interferencias.", "p3": "Algo en el texto se sentía personal — el centauro, viejo e inmóvil, hablando desde una montaña, intentando describir lo que alguna vez significó ser joven, estar en movimiento, estar vivo. Esa tensión atraviesa toda la edición.", "p4": "Tres copias encuadernadas a mano, impresas y exhibidas en el Museo de la Cárcova.", "detail_context": "Diplomatura en Artes del Libro, UNA", "detail_format": "Tapa dura con sobrecubierta ilustrada", "detail_print": "Dual Color, Buenos Aires", "detail_postcards": "Giclée Fine Art, FineArt Quilmes — Canson Platinum Rag 310g", "detail_binding": "Vanessa Ramos, Mar del Plata", "detail_translation": "Jorge Esquinca (La Colmena, UAEM, 2011)", "detail_role": "Diseño, ilustración, tipografía, preprensa, producción"} };
+    var translations = {
+      en: {
+        "nav_work": "Work", "nav_about": "About", "nav_contact": "Contact",
+        "tag_book": "Book Design", "tag_illustration": "Illustration", "tag_print": "Print",
+        "label_year": "Year", "label_context": "Context", "label_format": "Format",
+        "label_print": "Print", "label_postcards": "Postcards", "label_binding": "Binding",
+        "label_translation": "Translation", "label_my_role": "My role", "label_photography": "Photography",
+        "prev": "← Previous", "next": "Next project →",
+        "intro": "Book design and original illustration for a 19th-century prose poem. Three hand-bound copies, exhibited at Museo de la Cárcova, Buenos Aires.",
+        "p1": "El Centauro (The Centaur) is a prose poem by the French Romantic writer Maurice de Guérin — a mythological meditation on nature, belonging, and the body as both human and animal. The brief was to design an edition of the text that felt as elemental as the writing itself.",
+        "p2": "The book is built on a restrained typographic system — generous white space, classical references, and a glossary of mythological figures — giving the text room to unfold without interference.",
+        "p4": "Three hand-bound copies were printed and exhibited at Museo de la Cárcova.",
+        "detail_context": "Diplomatura en Artes del Libro, UNA",
+        "detail_format": "Hard cover with illustrated dust jacket",
+        "detail_postcards": "Fine Art giclée, FineArt Quilmes — Canson Platinum Rag 310g",
+        "detail_role": "Design, illustration, typesetting, prepress, production",
+        "detail_photography": "Teaching team, Diplomatura en Artes del Libro, UNA"
+      },
+      es: {
+        "nav_work": "Portfolio", "nav_about": "Sobre mí", "nav_contact": "Contacto",
+        "tag_book": "Diseño editorial", "tag_illustration": "Ilustración", "tag_print": "Impresión",
+        "label_year": "Año", "label_context": "Contexto", "label_format": "Formato",
+        "label_print": "Impresión", "label_postcards": "Postales", "label_binding": "Encuadernación",
+        "label_translation": "Traducción", "label_my_role": "Mi rol", "label_photography": "Fotografía",
+        "prev": "← Anterior", "next": "Siguiente proyecto →",
+        "intro": "Diseño editorial e ilustración original para un poema en prosa del siglo XIX. Tres ejemplares encuadernados a mano, exhibidos en el Museo de la Cárcova, Buenos Aires.",
+        "p1": "El Centauro es un poema en prosa del escritor romántico francés Maurice de Guérin — una meditación mitológica sobre la naturaleza, la pertenencia y el cuerpo como algo simultáneamente humano y animal. El brief era diseñar una edición del texto tan elemental como la propia escritura.",
+        "p2": "El libro se construye sobre un sistema tipográfico austero — espacios generosos, referencias clásicas y un glosario de figuras mitológicas — que le da al texto espacio para desplegarse sin interferencias.",
+        "p4": "Tres ejemplares fueron impresos, encuadernados a mano y exhibidos en el Museo de la Cárcova.",
+        "detail_context": "Diplomatura en Artes del Libro, UNA",
+        "detail_format": "Tapa dura con sobrecubierta ilustrada",
+        "detail_postcards": "Giclée Fine Art, FineArt Quilmes — Canson Platinum Rag 310g",
+        "detail_role": "Diseño, ilustración, composición tipográfica, preprensa, producción",
+        "detail_photography": "Equipo docente, Diplomatura en Artes del Libro, UNA"
+      }
+    };
     function setLang(lang) {
       localStorage.setItem('lang', lang);
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
